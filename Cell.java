@@ -8,6 +8,7 @@ public class Cell {
 
 	private int x, y;
 	private boolean visited = false;
+	private boolean path = false;
 	private boolean[] walls = {true, true, true, true};
 	
 	public Cell(int x, int y) {
@@ -16,10 +17,10 @@ public class Cell {
 		
 	}
 	
-	// could check for neighbour visited here and remove the 4 if statements in checkNeighbours
 	private Cell getNeighbour(List<Cell> grid, Cell neighbour) {
 		if (grid.contains(neighbour)) {
-			return grid.get(grid.indexOf(neighbour));
+			Cell c = grid.get(grid.indexOf(neighbour));
+			return c.isVisited() ? null : c;
 		} else {
 			return null;
 		}
@@ -35,19 +36,38 @@ public class Cell {
 		Cell bottom = getNeighbour(grid, new Cell(x, y + 1));
 		Cell left = getNeighbour(grid, new Cell(x - 1, y));
 		
+		if (top != null) neighbours.add(top);
+		if (right != null) neighbours.add(right);
+		if (bottom != null) neighbours.add(bottom);
+		if (left != null) neighbours.add(left);
+		
+		if (neighbours.size() > 0) {
+			return neighbours.get(new Random().nextInt(neighbours.size()));
+		} else {
+			return null;
+		}
+	}
+	
+	public Cell checkPath(List<Cell> grid, Cell current) {
+		List<Cell> neighbours = new ArrayList<Cell>();
+		
+		Cell top = getNeighbour(grid, new Cell(x, y - 1));
+		Cell right = getNeighbour(grid, new Cell(x + 1, y));
+		Cell bottom = getNeighbour(grid, new Cell(x, y + 1));
+		Cell left = getNeighbour(grid, new Cell(x - 1, y));
+		
+		
 		if (top != null) {
-			if (!top.visited) neighbours.add(top);
+			if (!current.walls[0]) neighbours.add(top);
 		}
 		if (right != null) {
-			 if (!right.visited) neighbours.add(right);
+			 if (!current.walls[1]) neighbours.add(right);
 		}
 		if (bottom != null ) {
-			if (!bottom.visited) neighbours.add(bottom);
+			if (!current.walls[2]) neighbours.add(bottom);
 		}
 		if (left != null) {
-			 if (!left.visited) {
-				 neighbours.add(left);
-			 }
+			 if (!current.walls[3]) neighbours.add(left);
 		}
 		
 		if (neighbours.size() > 0) {
@@ -81,34 +101,39 @@ public class Cell {
 	}
 	
 	public void draw(Graphics g) {
-		int x2 = x * MazePanel.W;
-	    int y2 = y * MazePanel.W;
+		int x2 = x * Maze.W;
+	    int y2 = y * Maze.W;
 	    
 	    if (visited) {
 	    	g.setColor(Color.magenta);
-	    	g.fillRect(x2, y2, MazePanel.W, MazePanel.W);
+	    	g.fillRect(x2, y2, Maze.W, Maze.W);
+	    }
+	    
+	    if (path) {
+	    	g.setColor(Color.GREEN);
+	    	g.fillRect(x2, y2, Maze.W, Maze.W);
 	    }
 	 
 	    g.setColor(Color.WHITE);
 	    if (walls[0]) {
-	    	g.drawLine(x2, y2, x2+MazePanel.W, y2);
+	    	g.drawLine(x2, y2, x2+Maze.W, y2);
 	    }
 	    if (walls[1]) {
-	    	g.drawLine(x2+MazePanel.W, y2, x2+MazePanel.W, y2+MazePanel.W);
+	    	g.drawLine(x2+Maze.W, y2, x2+Maze.W, y2+Maze.W);
 	    }
 	    if (walls[2]) {
-	    	g.drawLine(x2+MazePanel.W, y2+MazePanel.W, x2, y2+MazePanel.W);
+	    	g.drawLine(x2+Maze.W, y2+Maze.W, x2, y2+Maze.W);
 	    }
 	    if (walls[3]) {
-	    	g.drawLine(x2, y2+MazePanel.W, x2, y2);
+	    	g.drawLine(x2, y2+Maze.W, x2, y2);
 	    } 
 	}
 	
 	public void highlight(Graphics g) {
-		int x2 = x * MazePanel.W;
-	    int y2 = y * MazePanel.W;
+		int x2 = x * Maze.W;
+	    int y2 = y * Maze.W;
 	    g.setColor(Color.ORANGE);
-    	g.fillRect(x2+1, y2+1, MazePanel.W-1, MazePanel.W-1);
+    	g.fillRect(x2+1, y2+1, Maze.W-1, Maze.W-1);
 	}
 	
 	public int getX() {
@@ -129,6 +154,14 @@ public class Cell {
 	
 	public void setVisited(boolean visited) {
 		this.visited = visited;
+	}
+
+	public boolean isPath() {
+		return path;
+	}
+
+	public void setPath(boolean path) {
+		this.path = path;
 	}
 
 	@Override
