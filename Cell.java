@@ -9,6 +9,15 @@ public class Cell {
 	private int x, y;
 	private boolean visited = false;
 	private boolean path = false;
+	private boolean deadEnd = false;
+	public boolean isDeadEnd() {
+		return deadEnd;
+	}
+
+	public void setDeadEnd(boolean deadEnd) {
+		this.deadEnd = deadEnd;
+	}
+
 	private boolean[] walls = {true, true, true, true};
 	
 	public Cell(int x, int y) {
@@ -17,17 +26,19 @@ public class Cell {
 		
 	}
 	
+	// also rename methods! i.e. checkNeighbours only gives one neighbour etc. rename it.
+	
 	private Cell getNeighbour(List<Cell> grid, Cell neighbour) {
 		if (grid.contains(neighbour)) {
 			Cell c = grid.get(grid.indexOf(neighbour));
-			return c.isVisited() ? null : c;
+			return c.visited ? null : c;
 		} else {
 			return null;
 		}
 	}
 
 	// this could actually be an array of size 4. 0 = top, 1 = right, 2 = bottom, 3 = right
-	public Cell checkNeighbours(List<Cell> grid, Cell current) {
+	public Cell checkNeighbours(List<Cell> grid) {
 			
 		List<Cell> neighbours = new ArrayList<Cell>();
 		
@@ -48,27 +59,39 @@ public class Cell {
 		}
 	}
 	
-	public Cell checkPath(List<Cell> grid, Cell current) {
+	private Cell getPathNeighbour(List<Cell> grid, Cell neighbour) {
+		if (grid.contains(neighbour)) {
+			Cell c = grid.get(grid.indexOf(neighbour));
+			return c.deadEnd ? null : c;
+		} else {
+			return null;
+		}
+	}
+	
+	public Cell checkPathNeighbours(List<Cell> grid) {
 		List<Cell> neighbours = new ArrayList<Cell>();
 		
-		Cell top = getNeighbour(grid, new Cell(x, y - 1));
-		Cell right = getNeighbour(grid, new Cell(x + 1, y));
-		Cell bottom = getNeighbour(grid, new Cell(x, y + 1));
-		Cell left = getNeighbour(grid, new Cell(x - 1, y));
-		
-		
+		Cell top = getPathNeighbour(grid, new Cell(x, y - 1));
+		Cell right = getPathNeighbour(grid, new Cell(x + 1, y));
+		Cell bottom = getPathNeighbour(grid, new Cell(x, y + 1));
+		Cell left = getPathNeighbour(grid, new Cell(x - 1, y));
+		// SOMETHING WRONG WITH WALLS! COULD BE THAT IT'S REMOVED ON NEIGHBOUR BUT NOT ON CURRENT OR SOMETHING?? DONT THINK SO!
 		if (top != null) {
-			if (!current.walls[0]) neighbours.add(top);
+			if (!walls[0] && !top.walls[2]) neighbours.add(top);
 		}
 		if (right != null) {
-			 if (!current.walls[1]) neighbours.add(right);
+			if (!walls[1] && !right.walls[3]) neighbours.add(right);
 		}
-		if (bottom != null ) {
-			if (!current.walls[2]) neighbours.add(bottom);
+		
+		if (bottom != null) {
+			if (!walls[2] && !bottom.walls[0]) neighbours.add(bottom);
 		}
+		
 		if (left != null) {
-			 if (!current.walls[3]) neighbours.add(left);
+			if (!walls[3] && !left.walls[1]) neighbours.add(left);
 		}
+		
+		// neighbours should always be <= 2?
 		
 		if (neighbours.size() > 0) {
 			return neighbours.get(new Random().nextInt(neighbours.size()));
@@ -77,25 +100,25 @@ public class Cell {
 		}
 	}
 	
-	public void removeWalls(Cell current, Cell next) {
-		int x = current.x - next.x;
+	public void removeWalls(Cell next) {
+		int x = this.x - next.x;
 		 // top 0, right 1, bottom 2, left 3
 		
 		if(x == 1) {
-			current.walls[3] = false;
+			walls[3] = false;
 			next.walls[1] = false;
 		} else if (x == -1) {
-			current.walls[1] = false;
+			walls[1] = false;
 			next.walls[3] = false;
 		}
 		
 		int y = this.y - next.y;
 		
 		if(y == 1) {
-			current.walls[0] = false;
+			walls[0] = false;
 			next.walls[2] = false;
 		} else if (y == -1) {
-			current.walls[2] = false;
+			walls[2] = false;
 			next.walls[0] = false;
 		}
 	}
@@ -104,8 +127,15 @@ public class Cell {
 		int x2 = x * Maze.W;
 	    int y2 = y * Maze.W;
 	    
+	    
 	    if (visited) {
 	    	g.setColor(Color.magenta);
+	    	g.fillRect(x2, y2, Maze.W, Maze.W);
+	    }
+
+	    // these cam be changed don't need to draw both?
+	    if (deadEnd) {
+	    	g.setColor(Color.RED);
 	    	g.fillRect(x2, y2, Maze.W, Maze.W);
 	    }
 	    
@@ -184,10 +214,6 @@ public class Cell {
 		if (getClass() != obj.getClass())
 			return false;
 		Cell other = (Cell) obj;
-		if (visited != other.visited)
-			return false;
-		if (!Arrays.equals(walls, other.walls))
-			return false;
 		if (x != other.x)
 			return false;
 		if (y != other.y)
