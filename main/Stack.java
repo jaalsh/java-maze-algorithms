@@ -1,3 +1,5 @@
+package main;
+
 public class Stack<T extends Object> {
 	 
     private int stackSize;
