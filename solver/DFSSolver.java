@@ -3,12 +3,12 @@ package solver;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Stack;
 
 import javax.swing.Timer;
 
 import generator.GeneratorPanel;
-import main.DFSCell;
-import main.Stack;
+import util.DFSCell;
 
 public class DFSSolver {
 
@@ -18,7 +18,7 @@ public class DFSSolver {
 
 	public DFSSolver(int rows, int cols, List<DFSCell> grid, GeneratorPanel panel) {
 		this.grid = grid;
-		path = new Stack<DFSCell>(rows * cols);
+		path = new Stack<DFSCell>();
 		current = grid.get(0);
 		final Timer timer = new Timer(1, null);
 		timer.addActionListener(new ActionListener() {
@@ -43,7 +43,7 @@ public class DFSSolver {
 		if (next != null) {
 			path.push(current);
 			current = next;
-		} else if (!path.isStackEmpty()) {
+		} else if (!path.isEmpty()) {
 			try {
 				current = path.pop();
 			} catch (Exception e) {
@@ -53,7 +53,7 @@ public class DFSSolver {
 	}
 
 	private void drawPath() {
-		while (!path.isStackEmpty()) {
+		while (!path.isEmpty()) {
 			try {
 				path.pop().setPath(true);
 			} catch (Exception e) {
