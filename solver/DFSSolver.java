@@ -7,20 +7,21 @@ import java.util.Stack;
 
 import javax.swing.Timer;
 
-import generator.GeneratorPanel;
-import util.DFSCell;
+import generator.MazeGridPanel;
+import main.Maze;
+import util.Cell;
 
 public class DFSSolver {
 
-	private Stack<DFSCell> path;
-	private DFSCell current;
-	private List<DFSCell> grid;
+	private Stack<Cell> path;
+	private Cell current;
+	private List<Cell> grid;
 
-	public DFSSolver(int rows, int cols, List<DFSCell> grid, GeneratorPanel panel) {
+	public DFSSolver(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
-		path = new Stack<DFSCell>();
+		path = new Stack<Cell>();
 		current = grid.get(0);
-		final Timer timer = new Timer(1, null);
+		final Timer timer = new Timer(Maze.speed, null);
 		timer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -39,7 +40,7 @@ public class DFSSolver {
 
 	public void path() {
 		current.setDeadEnd(true);
-		DFSCell next = current.getPathNeighbour(grid);
+		Cell next = current.getPathNeighbour(grid);
 		if (next != null) {
 			path.push(current);
 			current = next;
