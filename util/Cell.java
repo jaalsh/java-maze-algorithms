@@ -88,6 +88,7 @@ public class Cell {
 		this.visited = visited;
 	}
 	
+	// used to solve...
 	private Cell checkNeighbour(List<Cell> grid, Cell neighbour, boolean path) {
 		if (grid.contains(neighbour)) {
 			Cell c = grid.get(grid.indexOf(neighbour));

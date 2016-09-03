@@ -44,8 +44,11 @@ public class MazeGridPanel extends JPanel {
 		case 2:
 			new WilsonGen(grid, this);
 			break;
+		case 3:
+			new GrowingTreeGen(grid, this);
+			break;
 		default:
-			new WilsonGen(grid, this);
+			new GrowingTreeGen(grid, this);
 			break;
 		}
 	}

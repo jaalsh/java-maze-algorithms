@@ -56,14 +56,7 @@ public class WilsonGen {
 		});
 		timer.start();
 	}
-
-	/*
-	 *  Proceed by picking a random cell not already part of the Maze, and doing a random walk until a cell is found which is already part of the Maze. 
- * Once the already created part of the Maze is hit, go back to the random cell that was picked, and carve along the path that was taken, adding those cells to the Maze. 
- * More specifically, when retracing the path, at each cell carve along the direction that the random walk most recently took when it left that cell. 
- * That avoids adding loops along the retraced path, resulting in a single long passage being appended to the Maze. 
- * The Maze is done when all cells have been appended to the Maze. 
-	 */
+	
 	private void carve() {
 		if (current.isVisited()) {
 			addPathToMaze();
