@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.swing.JPanel;
 import main.Maze;
-import solver.DFSSolver;
+import solver.DFSSolve;
+import solver.BFSSolve;
+import solver.BiDFSSolve;
 import util.Cell;
 
 
@@ -15,6 +17,7 @@ public class MazeGridPanel extends JPanel {
 
 	private static final long serialVersionUID = 7237062514425122227L;
 	private List<Cell> grid = new ArrayList<Cell>();
+	private List<Cell> currentCells = new ArrayList<Cell>();
 	private Cell current;
 
 	public MazeGridPanel(int rows, int cols) {
@@ -56,16 +59,29 @@ public class MazeGridPanel extends JPanel {
 	public void solve(int index) {
 		switch (index) {
 		case 0:
-			new DFSSolver(grid, this);
+			new DFSSolve(grid, this);
+			break;
+		case 1:
+			new BFSSolve(grid, this);
+			break;
+		case 2: 
+			new BiDFSSolve(grid, this);
 			break;
 		default:
-			new DFSSolver(grid, this);
+			new BFSSolve(grid, this);
 			break;
 		}
 	}
 	
 	public void setCurrent(Cell current) {
 		this.current = current;
+	}
+	
+	/**
+	 * @param currentCells the currentCells to set
+	 */
+	public void setCurrentCells(List<Cell> currentCells) {
+		this.currentCells = currentCells;
 	}
 
 	@Override
@@ -77,5 +93,10 @@ public class MazeGridPanel extends JPanel {
 		if (current != null) {
 			current.highlight(g);
 		}
+		for (Cell c : currentCells) {
+			if(c != null) c.highlight(g);
+		}
 	}
+
+
 }

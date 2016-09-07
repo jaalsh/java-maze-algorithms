@@ -10,8 +10,9 @@ import main.Maze;
 
 public class Cell {
 
-	protected int x;
-	protected int y;
+	private int x, y, distance;
+	
+	private Cell parent;
 	
 	private boolean visited = false;
 	private boolean path = false;
@@ -22,6 +23,7 @@ public class Cell {
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
+		this.distance = -1;
 	}
 	
 	public void draw(Graphics g) {
@@ -88,7 +90,7 @@ public class Cell {
 		this.visited = visited;
 	}
 	
-	// used to solve...
+	// used to solve... this needs a rework minds
 	private Cell checkNeighbour(List<Cell> grid, Cell neighbour, boolean path) {
 		if (grid.contains(neighbour)) {
 			Cell c = grid.get(grid.indexOf(neighbour));
@@ -160,6 +162,42 @@ public class Cell {
 		if (right != null) neighbours.add(right);
 		if (bottom != null) neighbours.add(bottom);
 		if (left != null) neighbours.add(left);
+		
+		return neighbours;
+	}
+	
+	 //do i not have this method already? lol
+	private Cell checkValidMoveNeighbour(List<Cell> grid, Cell neighbour) {
+		if (grid.contains(neighbour)) {
+			return grid.get(grid.indexOf(neighbour));
+		} else {
+			return null;
+		}
+	}
+	
+	public List<Cell> getValidMoveNeighbours(List<Cell> grid) {
+		List<Cell> neighbours = new ArrayList<Cell>(4);
+		
+		Cell top = checkValidMoveNeighbour(grid, new Cell(x, y - 1));
+		Cell right = checkValidMoveNeighbour(grid, new Cell(x + 1, y));
+		Cell bottom = checkValidMoveNeighbour(grid, new Cell(x, y + 1));
+		Cell left = checkValidMoveNeighbour(grid, new Cell(x - 1, y));
+		
+		if (top != null) {
+			if (!walls[0]) neighbours.add(top);
+		}
+		if (right != null) {
+			if (!walls[1]) neighbours.add(right);
+		}
+		
+		if (bottom != null) {
+			if (!walls[2]) neighbours.add(bottom);
+		}
+		
+		if (left != null) {
+			if (!walls[3]) neighbours.add(left);
+		}
+		
 		
 		return neighbours;
 	}
@@ -251,5 +289,33 @@ public class Cell {
 		if (y != other.y)
 			return false;
 		return true;
+	}
+
+	/**
+	 * @return the distance
+	 */
+	public int getDistance() {
+		return distance;
+	}
+
+	/**
+	 * @param distance the distance to set
+	 */
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	/**
+	 * @return the parent
+	 */
+	public Cell getParent() {
+		return parent;
+	}
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(Cell parent) {
+		this.parent = parent;
 	}
 }

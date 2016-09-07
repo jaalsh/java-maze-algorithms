@@ -1,34 +1,33 @@
-package generator;
+package solver;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 import javax.swing.Timer;
 
+import generator.MazeGridPanel;
 import main.Maze;
 import util.Cell;
 
-public class DFSGen {
+public class DFSSolve {
 
-	private Stack<Cell> stack = new Stack<Cell>();
-	private List<Cell> grid = new ArrayList<Cell>();
+	private Stack<Cell> path = new Stack<Cell>();
 	private Cell current;
+	private List<Cell> grid;
 
-	public DFSGen(List<Cell> grid, MazeGridPanel panel) {
+	public DFSSolve(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
 		current = grid.get(0);
 		final Timer timer = new Timer(Maze.speed, null);
 		timer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!grid.parallelStream().allMatch(c -> c.isVisited())) {
-					carve();
+				if (!current.equals(grid.get(grid.size() - 1))) {
+					path();
 				} else {
-					current = grid.get(0);
-					Maze.generated = true;
+					drawPath();
 					timer.stop();
 				}
 				panel.setCurrent(current);
@@ -38,16 +37,25 @@ public class DFSGen {
 		timer.start();
 	}
 
-	private void carve() {
-		current.setVisited(true);
-		Cell next = current.getNeighbour(grid);
+	public void path() {
+		current.setDeadEnd(true);
+		Cell next = current.getPathNeighbour(grid);
 		if (next != null) {
-			stack.push(current);
-			current.removeWalls(next);
+			path.push(current);
 			current = next;
-		} else if (!stack.isEmpty()) {
+		} else if (!path.isEmpty()) {
 			try {
-				current = stack.pop();
+				current = path.pop();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void drawPath() {
+		while (!path.isEmpty()) {
+			try {
+				path.pop().setPath(true);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
