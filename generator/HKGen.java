@@ -38,13 +38,13 @@ public class HKGen {
 
 	private void carve() {
 		current.setVisited(true);
-		Cell next = current.getNeighbour(grid);
+		Cell next = current.getUnvisitedNeighbour(grid);
 		if (next != null) {
 			current.removeWalls(next);
 			current = next;
 		} else {
 			// hunt
-			Optional<Cell> opt = grid.parallelStream().filter(c -> c.isVisited() && c.getNeighbours(grid).size() > 0)
+			Optional<Cell> opt = grid.parallelStream().filter(c -> c.isVisited() && c.getUnvisitedNeighboursList(grid).size() > 0)
 					.findAny();
 			if (opt.isPresent()) {
 				current = opt.get();

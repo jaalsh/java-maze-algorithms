@@ -65,7 +65,7 @@ public class GrowingTreeGen {
 
 	private void carve() {
 		current.setVisited(true);
-		Cell next = current.getNeighbour(grid);
+		Cell next = current.getUnvisitedNeighbour(grid);
 		if (next != null) {
 			current.removeWalls(next);
 			current = next;
@@ -73,7 +73,7 @@ public class GrowingTreeGen {
 		} else {
 			cells.remove(current);
 			if (!cells.isEmpty()) {
-				if (cells.get(0).getNeighbours(grid).size() != 0) {
+				if (cells.get(0).getUnvisitedNeighboursList(grid).size() != 0) {
 					current = cells.get(0);
 				} else {
 					current = cells.get(r.nextInt(cells.size()));

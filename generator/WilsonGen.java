@@ -68,7 +68,7 @@ public class WilsonGen {
 			}
 		}
 		current.setPath(true);
-		Cell next = current.getAllNeighbour(grid);
+		Cell next = current.getNonPathNeighbour(grid);
 		if (next != null) {
 			stack.push(current);
 			current.removeWalls(next);

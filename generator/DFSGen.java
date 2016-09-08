@@ -40,7 +40,7 @@ public class DFSGen {
 
 	private void carve() {
 		current.setVisited(true);
-		Cell next = current.getNeighbour(grid);
+		Cell next = current.getUnvisitedNeighbour(grid);
 		if (next != null) {
 			stack.push(current);
 			current.removeWalls(next);
