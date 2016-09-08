@@ -6,8 +6,6 @@ import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
@@ -155,32 +153,24 @@ public class Maze {
 		
 		container.add(cards);
 		
-		runButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 speed = genSpeedSlider.getValue();
-				 generated = false;
-				 grid.generate(genMethodsComboBox.getSelectedIndex());
-			     cardLayout.next(cards);
-			}
+		runButton.addActionListener(event -> {
+			 speed = genSpeedSlider.getValue();
+			 generated = false;
+			 grid.generate(genMethodsComboBox.getSelectedIndex());
+		     cardLayout.next(cards);
 		});
 
-		solveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (generated) {
-					speed = solveSpeedSlider.getValue();
-					grid.solve(solveMethodsComboBox.getSelectedIndex());	
-					cardLayout.last(cards);
-				} else {
-					JOptionPane.showMessageDialog(frame, "Please wait until the maze has been generated.");
-				}
+		solveButton.addActionListener(event -> {
+			if (generated) {
+				speed = solveSpeedSlider.getValue();
+				grid.solve(solveMethodsComboBox.getSelectedIndex());	
+				cardLayout.last(cards);
+			} else {
+				JOptionPane.showMessageDialog(frame, "Please wait until the maze has been generated.");
 			}
 		});
 		
-		resetButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				createAndShowGUI();
-			}
-		});
+		resetButton.addActionListener(event -> createAndShowGUI());
 
 		frame.pack();
 		frame.setLocationRelativeTo(null);

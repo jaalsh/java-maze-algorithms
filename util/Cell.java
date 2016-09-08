@@ -18,7 +18,7 @@ public class Cell {
 	private boolean path = false;
 	private boolean deadEnd = false;
 	
-	protected boolean[] walls = {true, true, true, true};
+	private boolean[] walls = {true, true, true, true};
 	
 	public Cell(int x, int y) {
 		this.x = x;
@@ -32,10 +32,6 @@ public class Cell {
 	
 	public int getY() {
 		return y;
-	}
-	
-	public boolean[] getWalls() {
-		return walls;
 	}
 	
 	public boolean isVisited() {
@@ -58,30 +54,18 @@ public class Cell {
 		this.path = path;
 	}
 	
-	/**
-	 * @return the distance
-	 */
 	public int getDistance() {
 		return distance;
 	}
 
-	/**
-	 * @param distance the distance to set
-	 */
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
 
-	/**
-	 * @return the parent
-	 */
 	public Cell getParent() {
 		return parent;
 	}
-
-	/**
-	 * @param parent the parent to set
-	 */
+	
 	public void setParent(Cell parent) {
 		this.parent = parent;
 	}
@@ -147,35 +131,7 @@ public class Cell {
 			next.walls[0] = false;
 		}
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + x;
-		result = prime * result + y;
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cell other = (Cell) obj;
-		if (x != other.x)
-			return false;
-		if (y != other.y)
-			return false;
-		return true;
-	}
-
-	
-	
-	
 	private Cell randomNeighbour(List<Cell> neighbours) {
 		if (neighbours.size() > 0) {
 			return neighbours.get(new Random().nextInt(neighbours.size()));
@@ -190,23 +146,6 @@ public class Cell {
 		} else {
 			return null;
 		}
-	}
-	
-	// method to reduce lines of code here. push for safety.
-	private List<Cell> getNeighboursInGridBounds(List<Cell> grid, boolean condition) {
-		List<Cell> neighbours = new ArrayList<Cell>(4);
-		
-		Cell top = checkNeighbourInGridBounds(grid, new Cell(x, y - 1));
-		Cell right = checkNeighbourInGridBounds(grid, new Cell(x + 1, y));
-		Cell bottom = checkNeighbourInGridBounds(grid, new Cell(x, y + 1));
-		Cell left = checkNeighbourInGridBounds(grid, new Cell(x - 1, y));
-		
-		if (top != null) if(condition) neighbours.add(top);
-		if (right != null) if(condition) neighbours.add(right);
-		if (bottom != null) if(condition) neighbours.add(bottom);
-		if (left != null) if(condition) neighbours.add(left);
-		
-		return neighbours;
 	}
 	
 	// Used for Wilson's algorithm
@@ -285,6 +224,7 @@ public class Cell {
 		return neighbours;
 	}
 	
+	// used for DFS solving, gets a neighbour that could potentially be part of the solution path.
 	public Cell getPathNeighbour(List<Cell> grid) {
 		List<Cell> neighbours = new ArrayList<Cell>();
 		
@@ -296,26 +236,22 @@ public class Cell {
 		if (top != null) {
 			if (!top.deadEnd) {
 				if (!walls[0]) neighbours.add(top);
-				
 			}
 		}
 		if (right != null) {
 			if (!right.deadEnd) {
-				
 				if (!walls[1]) neighbours.add(right);
 			}
 		}
 		
 		if (bottom != null) {
 			if (!bottom.deadEnd) {
-				
 				if (!walls[2]) neighbours.add(bottom);
 			}
 		}
 		
 		if (left != null) {
 			if (!left.deadEnd) {
-				
 				if (!walls[3]) neighbours.add(left);
 			}
 		}
@@ -324,5 +260,30 @@ public class Cell {
 			return neighbours.get(0);
 		}
 		return randomNeighbour(neighbours);
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cell other = (Cell) obj;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
 	}
 }
