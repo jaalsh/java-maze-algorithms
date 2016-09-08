@@ -43,11 +43,6 @@ public class Cell {
 	    	g.fillRect(x2, y2, Maze.W, Maze.W);
 	    }
 	    
-	    if(x == 0 && y == 0) {
-	    	g.setColor(Color.GREEN);
-	    	g.fillRect(x2, y2, Maze.W, Maze.W);
-	    }
-	    
 	    g.setColor(Color.WHITE);
 	    if (walls[0]) {
 	    	g.drawLine(x2, y2, x2+Maze.W, y2);
@@ -63,11 +58,11 @@ public class Cell {
 	    } 
 	}
 	
-	public void highlight(Graphics g) {
+	public void displayAsColor(Graphics g, Color color) {
 		int x2 = x * Maze.W;
 	    int y2 = y * Maze.W;
-	    g.setColor(Color.ORANGE);
-    	g.fillRect(x2+1, y2+1, Maze.W-1, Maze.W-1);
+		g.setColor(color);
+    	g.fillRect(x2, y2, Maze.W, Maze.W);
 	}
 	
 	public int getX() {

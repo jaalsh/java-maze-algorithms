@@ -1,5 +1,6 @@
 package generator;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class MazeGridPanel extends JPanel {
 	private static final long serialVersionUID = 7237062514425122227L;
 	private List<Cell> grid = new ArrayList<Cell>();
 	private List<Cell> currentCells = new ArrayList<Cell>();
-	private Cell current;
 
 	public MazeGridPanel(int rows, int cols) {
 		for (int x = 0; x < rows; x++) {
@@ -74,7 +74,11 @@ public class MazeGridPanel extends JPanel {
 	}
 	
 	public void setCurrent(Cell current) {
-		this.current = current;
+		if(currentCells.size() == 0) {
+			currentCells.add(current);
+		} else {
+			currentCells.set(0, current);			
+		}
 	}
 	
 	/**
@@ -90,13 +94,10 @@ public class MazeGridPanel extends JPanel {
 		for (Cell c : grid) {
 			c.draw(g);
 		}
-		if (current != null) {
-			current.highlight(g);
-		}
 		for (Cell c : currentCells) {
-			if(c != null) c.highlight(g);
+			if(c != null) c.displayAsColor(g, Color.ORANGE);
 		}
+		grid.get(0).displayAsColor(g, Color.GREEN); // start cell
+		grid.get(grid.size() - 1).displayAsColor(g, Color.YELLOW); // end or goal cell
 	}
-
-
 }

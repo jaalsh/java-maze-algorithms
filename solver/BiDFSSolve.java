@@ -21,7 +21,6 @@ public class BiDFSSolve {
 
 	public BiDFSSolve(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
-		panel.setCurrent(null);
 		current1 = grid.get(0);
 		current2 = grid.get(grid.size() - 1);
 		final Timer timer = new Timer(Maze.speed, null);

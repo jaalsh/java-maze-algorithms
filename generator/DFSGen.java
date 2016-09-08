@@ -27,7 +27,7 @@ public class DFSGen {
 				if (!grid.parallelStream().allMatch(c -> c.isVisited())) {
 					carve();
 				} else {
-					current = grid.get(0);
+					current = null;
 					Maze.generated = true;
 					timer.stop();
 				}
