@@ -207,7 +207,8 @@ public class Cell {
 		
 		if (top != null) {
 			if (!walls[0]) neighbours.add(top);
-		}
+		}	
+		
 		if (right != null) {
 			if (!walls[1]) neighbours.add(right);
 		}
@@ -219,7 +220,6 @@ public class Cell {
 		if (left != null) {
 			if (!walls[3]) neighbours.add(left);
 		}
-		
 		
 		return neighbours;
 	}
@@ -238,6 +238,7 @@ public class Cell {
 				if (!walls[0]) neighbours.add(top);
 			}
 		}
+		
 		if (right != null) {
 			if (!right.deadEnd) {
 				if (!walls[1]) neighbours.add(right);
@@ -259,7 +260,24 @@ public class Cell {
 		if (neighbours.size() ==  1) {
 			return neighbours.get(0);
 		}
+		
 		return randomNeighbour(neighbours);
+	}
+	
+	public List<Cell> getAllNeighbours(List<Cell> grid) {
+		List<Cell> neighbours = new ArrayList<Cell>();
+		
+		Cell top = checkNeighbourInGridBounds(grid, new Cell(x, y - 1));
+		Cell right = checkNeighbourInGridBounds(grid, new Cell(x + 1, y));
+		Cell bottom = checkNeighbourInGridBounds(grid, new Cell(x, y + 1));
+		Cell left = checkNeighbourInGridBounds(grid, new Cell(x - 1, y));
+		
+		if (top != null) neighbours.add(top);
+		if (right != null) neighbours.add(right);
+		if (bottom != null) neighbours.add(bottom);
+		if (left != null) neighbours.add(left);
+		
+		return neighbours;
 	}
 	
 	@Override

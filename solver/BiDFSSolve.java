@@ -27,7 +27,8 @@ public class BiDFSSolve {
 		timer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (!pathFound()) {					
+				if (!pathFound()) {	
+					// can't use one method as Java is pass by value... not reference.
 					pathFromEnd();
 					pathFromStart();
 				} else {
