@@ -89,6 +89,7 @@ public class Maze {
 		JButton runButton = new JButton("Run");
 		JButton solveButton = new JButton("Solve");
 		JButton resetButton = new JButton("Reset");
+		JButton solveAgainButton = new JButton("Solve Again");
 		
         JComboBox<String> genMethodsComboBox = new JComboBox<>(GENERATION_METHODS);
         JComboBox<String> solveMethodsComboBox = new JComboBox<>(SOLVING_METHODS);
@@ -141,6 +142,11 @@ public class Maze {
 
 		JPanel card3 = new JPanel();
 		card3.setLayout(new GridBagLayout());
+		c.gridx = 0;
+		c.gridy = 0;
+		card3.add(solveAgainButton, c);
+		c.gridx = 0;
+		c.gridy = 1;
 		card3.add(resetButton, c);
 		
 		// Create the panel that contains the "cards".
@@ -168,6 +174,11 @@ public class Maze {
 			} else {
 				JOptionPane.showMessageDialog(frame, "Please wait until the maze has been generated.");
 			}
+		});
+		
+		solveAgainButton.addActionListener(event -> {
+			grid.resetSolution();
+			cardLayout.show(cards, "solve");
 		});
 		
 		resetButton.addActionListener(event -> createAndShowGUI());

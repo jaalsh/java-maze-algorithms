@@ -62,7 +62,6 @@ public class MazeGridPanel extends JPanel {
 	}
 
 	public void solve(int index) {
-		
 		switch (index) {
 		case 0:
 			new DFSSolve(grid, this);
@@ -80,6 +79,16 @@ public class MazeGridPanel extends JPanel {
 			new BFSSolve(grid, this);
 			break;
 		}
+	}
+	
+	public void resetSolution() {
+		for (Cell c : grid) {
+			c.setDeadEnd(false);
+			c.setPath(false);
+			c.setDistance(-1);
+			c.setParent(null);
+		}
+		repaint();
 	}
 	
 	public void setCurrent(Cell current) {

@@ -13,6 +13,14 @@ import javax.swing.Timer;
 import main.Maze;
 import util.Cell;
 
+// does not generate a perfect maze - this is mostly for fun.
+/*
+ * Perfect: A "perfect" Maze means one without any loops or closed circuits, and without any inaccessible areas. 
+ * Also called a simply-connected Maze. From each point, there is exactly one path to any other point. 
+ * The Maze has exactly one solution. 
+ * In Computer Science terms, such a Maze can be described as a spanning tree over the set of cells or vertices
+ */
+
 public class QuadDFSGen {
 
 	private Stack<Cell> stack1 = new Stack<Cell>();
