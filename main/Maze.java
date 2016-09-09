@@ -32,8 +32,8 @@ public class Maze {
 	public static int speed = 1;
 	public static boolean generated;
 	
-	private static final String[] GENERATION_METHODS = {"0. DFS", "1. Hunt & Kill", "2. Wilson's", "4. Growing Tree"};
-	private static final String[] SOLVING_METHODS = {"0. DFS", "1. BFS", "2. Bidirectional DFS"};
+	private static final String[] GENERATION_METHODS = {"0. DFS", "1. Hunt & Kill", "2. Wilson's", "3. Growing Tree", "4. Quad-directional DFS"};
+	private static final String[] SOLVING_METHODS = {"0. DFS", "1. BFS", "2. Bi-directional DFS", "3. Dijkstra"};
 
 	private int cols, rows;
 

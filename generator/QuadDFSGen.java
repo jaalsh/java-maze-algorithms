@@ -79,6 +79,7 @@ public class QuadDFSGen {
 			}
 		}
 	}
+	
 	private void carveCurrent2() {
 		current2.setVisited(true);
 		Cell next = current2.getUnvisitedNeighbour(grid);

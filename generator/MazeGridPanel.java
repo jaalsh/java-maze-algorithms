@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import main.Maze;
 import solver.DFSSolve;
+import solver.DijkstraSolve;
 import solver.BFSSolve;
 import solver.BiDFSSolve;
 import util.Cell;
@@ -36,9 +37,9 @@ public class MazeGridPanel extends JPanel {
 	}
 
 	public void generate(int index) {
-		new QuadDFSGen(grid, this);
+		
 		// switch statement for gen method read from combobox in Maze.java
-		/*switch (index) {
+		switch (index) {
 		case 0:
 			new DFSGen(grid, this);
 			break;
@@ -51,13 +52,17 @@ public class MazeGridPanel extends JPanel {
 		case 3:
 			new GrowingTreeGen(grid, this);
 			break;
+		case 4:
+			new QuadDFSGen(grid, this);
+			break;
 		default:
 			new GrowingTreeGen(grid, this);
 			break;
-		}*/
+		}
 	}
 
 	public void solve(int index) {
+		
 		switch (index) {
 		case 0:
 			new DFSSolve(grid, this);
@@ -67,6 +72,9 @@ public class MazeGridPanel extends JPanel {
 			break;
 		case 2: 
 			new BiDFSSolve(grid, this);
+			break;
+		case 3:
+			new DijkstraSolve(grid, this);
 			break;
 		default:
 			new BFSSolve(grid, this);

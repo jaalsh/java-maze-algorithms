@@ -11,6 +11,9 @@ import generator.MazeGridPanel;
 import main.Maze;
 import util.Cell;
 
+
+// basically a greedy dijkstra that goes a path until it hits a dead end instead of prioritising the 
+// closest cell to the goal.
 public class DFSSolve {
 
 	private Stack<Cell> path = new Stack<Cell>();
@@ -37,7 +40,7 @@ public class DFSSolve {
 		timer.start();
 	}
 
-	public void path() {
+	private void path() {
 		current.setDeadEnd(true);
 		Cell next = current.getPathNeighbour(grid);
 		if (next != null) {

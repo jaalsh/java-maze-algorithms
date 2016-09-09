@@ -44,7 +44,7 @@ public class BiDFSSolve {
 		timer.start();
 	}
 
-	public void pathFromStart() {
+	private void pathFromStart() {
 		current1.setDeadEnd(true);
 		Cell next = current1.getPathNeighbour(grid);
 		if (next != null) {
@@ -59,7 +59,7 @@ public class BiDFSSolve {
 		}
 	}
 	
-	public void pathFromEnd() {
+	private void pathFromEnd() {
 		current2.setDeadEnd(true);
 		Cell next = current2.getPathNeighbour(grid);
 		if (next != null) {
