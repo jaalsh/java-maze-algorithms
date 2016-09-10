@@ -10,7 +10,7 @@ import java.util.Stack;
 
 import javax.swing.Timer;
 
-import main.Maze;
+import main.*;
 import util.Cell;
 
 // does not generate a perfect maze - this is mostly for fun.

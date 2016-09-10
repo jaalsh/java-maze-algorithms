@@ -8,8 +8,7 @@ import java.util.Stack;
 
 import javax.swing.Timer;
 
-import generator.MazeGridPanel;
-import main.Maze;
+import main.*;
 import util.Cell;
 
 public class BiDFSSolve {

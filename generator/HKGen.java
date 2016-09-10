@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import javax.swing.Timer;
 
-import main.Maze;
+import main.*;
 import util.Cell;
 
 public class HKGen {

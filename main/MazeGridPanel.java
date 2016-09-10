@@ -1,4 +1,4 @@
-package generator;
+package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
-import main.Maze;
-import solver.DFSSolve;
-import solver.DijkstraSolve;
-import solver.BFSSolve;
-import solver.BiDFSSolve;
+
+import generator.*;
+import solver.*;
 import util.Cell;
 
 
@@ -37,7 +35,6 @@ public class MazeGridPanel extends JPanel {
 	}
 
 	public void generate(int index) {
-		
 		// switch statement for gen method read from combobox in Maze.java
 		switch (index) {
 		case 0:
@@ -54,6 +51,9 @@ public class MazeGridPanel extends JPanel {
 			break;
 		case 4:
 			new QuadDFSGen(grid, this);
+			break;
+		case 5:
+			new BinaryTreeGen(grid, this);
 			break;
 		default:
 			new GrowingTreeGen(grid, this);

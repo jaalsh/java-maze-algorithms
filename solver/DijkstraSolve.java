@@ -9,8 +9,7 @@ import java.util.Queue;
 
 import javax.swing.Timer;
 
-import generator.MazeGridPanel;
-import main.Maze;
+import main.*;
 import util.Cell;
 
 public class DijkstraSolve {

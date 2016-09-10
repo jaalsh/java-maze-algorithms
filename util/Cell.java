@@ -20,6 +20,14 @@ public class Cell {
 	
 	private boolean[] walls = {true, true, true, true};
 	
+	public boolean[] getWalls() {
+		return walls;
+	}
+
+	public void setWalls(boolean[] walls) {
+		this.walls = walls;
+	}
+
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;

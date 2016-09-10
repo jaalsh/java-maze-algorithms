@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import javax.swing.Timer;
 
-import main.Maze;
+import main.*;
 import util.Cell;
 
 /*Wilson's algorithm: This is an improved version of the Aldous-Broder algorithm, 

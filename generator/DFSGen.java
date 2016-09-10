@@ -8,7 +8,7 @@ import java.util.Stack;
 
 import javax.swing.Timer;
 
-import main.Maze;
+import main.*;
 import util.Cell;
 
 public class DFSGen {
