@@ -18,7 +18,7 @@ public class KruskalGen {
 
 	private Stack<Cell> stack = new Stack<Cell>();
 	private DisjointSets disjointSet = new DisjointSets();
-	private List<Cell> grid = new ArrayList<Cell>(); // may not need
+	private List<Cell> grid = new ArrayList<Cell>();
 	private Cell current;
 
 	public KruskalGen(List<Cell> grid, MazeGridPanel panel) {

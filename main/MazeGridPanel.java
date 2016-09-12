@@ -35,10 +35,10 @@ public class MazeGridPanel extends JPanel {
 	}
 
 	public void generate(int index) {
-		
+		new EllerGen(grid, this);
 		
 		// switch statement for gen method read from combobox in Maze.java
-		switch (index) {
+		/*switch (index) {
 		case 0:
 			new DFSGen(grid, this);
 			break;
@@ -63,7 +63,7 @@ public class MazeGridPanel extends JPanel {
 		default:
 			new GrowingTreeGen(grid, this);
 			break;
-		}
+		}*/
 	}
 
 	public void solve(int index) {
