@@ -10,7 +10,7 @@ import main.Maze;
 
 public class Cell {
 
-	private int x, y, distance;
+	private int x, y, distance, id;
 	
 	private Cell parent;
 	
@@ -288,6 +288,14 @@ public class Cell {
 		return neighbours;
 	}
 	
+	public Cell getRightNeighbour(List<Cell> grid) {
+		return checkNeighbourInGridBounds(grid, new Cell(x + 1, y));
+	}
+	
+	public Cell getBottomNeighbour(List<Cell> grid) {
+		return checkNeighbourInGridBounds(grid, new Cell(x, y + 1));
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -311,5 +319,19 @@ public class Cell {
 		if (y != other.y)
 			return false;
 		return true;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 }

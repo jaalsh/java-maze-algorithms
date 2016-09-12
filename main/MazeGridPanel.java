@@ -35,6 +35,8 @@ public class MazeGridPanel extends JPanel {
 	}
 
 	public void generate(int index) {
+		
+		
 		// switch statement for gen method read from combobox in Maze.java
 		switch (index) {
 		case 0:
@@ -54,6 +56,9 @@ public class MazeGridPanel extends JPanel {
 			break;
 		case 5:
 			new BinaryTreeGen(grid, this);
+			break;
+		case 6:
+			new KruskalGen(grid, this);
 			break;
 		default:
 			new GrowingTreeGen(grid, this);
