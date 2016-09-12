@@ -4,14 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.Set;
-import java.util.Stack;
-import java.util.TreeSet;
 
 import javax.swing.Timer;
 
@@ -20,22 +14,20 @@ import main.MazeGridPanel;
 import util.Cell;
 import util.DisjointSets;
 
-// You need to be able to quickly determine the set of any given cell in a row, as well as determine the list of cells in any given set. 
-//I did this by maintaining a hash of arrays that mapped sets to cells, and another hash that mapped cells to sets.
+// Slightly modified version in that the algorithm implemented here focuses on columns rather than rows.
 
 public class EllerGen {
 	
 	private List<Cell> grid = new ArrayList<Cell>();
-	
 	private List<Cell> currentCol = new ArrayList<Cell>();
-	private int rows = Math.floorDiv(Maze.HEIGHT, Maze.W);
-	private int fromIndex, toIndex;
 	
 	private DisjointSets disjointSet = new DisjointSets();
 	
-	private Random r = new Random();
-			
 	private int colCounter = 0;
+	private int rows = Math.floorDiv(Maze.HEIGHT, Maze.W);
+	private int fromIndex, toIndex;
+	
+	private Random r = new Random();
 	
 	private Cell current;
 
@@ -70,18 +62,16 @@ public class EllerGen {
 	}
 
 	private void carve() {
-		
 		currentCol = grid.subList(fromIndex, toIndex);
 		colCounter++;
 		fromIndex = toIndex;
 		toIndex += rows;
 		
-		
+		// carve down
 		for (Cell c : currentCol) {
 			c.setVisited(true);
-	
 			current = c;
-			// carve down
+			
 			if (r.nextBoolean() || colCounter == Math.floorDiv(Maze.HEIGHT, Maze.W)) { // or last column
 				Cell bottom = c.getBottomNeighbour(grid);
 				if (bottom != null) {
@@ -93,6 +83,7 @@ public class EllerGen {
 			}
 		}
 		
+		// carve right
 		for (Cell c : currentCol) {
 			List<Cell> cells = new ArrayList<Cell>();
 			for (Cell c2 : currentCol) {
