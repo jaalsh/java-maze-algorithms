@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 public class Maze {
 
 	public static final int WIDTH = 800;
-	public static final int HEIGHT = 800;
+	public static final int HEIGHT = WIDTH; // best to keep these the same. variable is only created for readability.
 	public static final int W = 20;
 	
 	public static int speed = 1;
