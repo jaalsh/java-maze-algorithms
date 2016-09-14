@@ -63,7 +63,7 @@ public class MazeGridPanel extends JPanel {
 			new EllerGen(grid, this);
 			break;
 		case 8:
-			new EllerGenBias(grid, this);
+			new AldousBroderGen(grid, this);
 			break;
 		default:
 			new GrowingTreeGen(grid, this);
