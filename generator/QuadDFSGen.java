@@ -66,6 +66,7 @@ public class QuadDFSGen {
 				}
 				panel.setCurrentCells(Arrays.asList(current1, current2, current3, current4));
 				panel.repaint();
+				timer.setDelay(Maze.speed);
 			}
 		});
 		timer.start();

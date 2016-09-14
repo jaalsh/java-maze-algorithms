@@ -16,7 +16,7 @@ import util.Cell;
 public class MazeGridPanel extends JPanel {
 
 	private static final long serialVersionUID = 7237062514425122227L;
-	private List<Cell> grid = new ArrayList<Cell>();
+	private final List<Cell> grid = new ArrayList<Cell>();
 	private List<Cell> currentCells = new ArrayList<Cell>();
 
 	public MazeGridPanel(int rows, int cols) {
@@ -35,6 +35,7 @@ public class MazeGridPanel extends JPanel {
 	}
 
 	public void generate(int index) {
+		
 		// switch statement for gen method read from combobox in Maze.java
 		switch (index) {
 		case 0:
@@ -60,6 +61,9 @@ public class MazeGridPanel extends JPanel {
 			break;
 		case 7:
 			new EllerGen(grid, this);
+			break;
+		case 8:
+			new EllerGenBias(grid, this);
 			break;
 		default:
 			new GrowingTreeGen(grid, this);

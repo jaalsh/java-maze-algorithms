@@ -38,6 +38,7 @@ public class BiDFSSolve {
 				}
 				panel.setCurrentCells(Arrays.asList(current1, current2));
 				panel.repaint();
+				timer.setDelay(Maze.speed);
 			}
 		});
 		timer.start();

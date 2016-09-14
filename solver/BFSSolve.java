@@ -51,6 +51,7 @@ public class BFSSolve {
 				}
 				panel.setCurrent(current);
 				panel.repaint();
+				timer.setDelay(Maze.speed);
 			}
 		});
 		timer.start();

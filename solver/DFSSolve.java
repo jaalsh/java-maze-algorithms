@@ -34,6 +34,7 @@ public class DFSSolve {
 				}
 				panel.setCurrent(current);
 				panel.repaint();
+				timer.setDelay(Maze.speed);
 			}
 		});
 		timer.start();

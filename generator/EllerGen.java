@@ -20,13 +20,12 @@ import util.DisjointSets;
 
 public class EllerGen {
 	
-	private List<Cell> grid;
+	private final List<Cell> grid;
 	private List<Cell> currentCol;
 	
-	private DisjointSets disjointSet = new DisjointSets();
+	private final DisjointSets disjointSet = new DisjointSets();
 	
-	private int colCounter = 0;
-	private int cols = Math.floorDiv(Maze.WIDTH, Maze.W);
+	private static final int COLS = Math.floorDiv(Maze.WIDTH, Maze.W);
 	private int fromIndex, toIndex;
 	
 	private boolean genNextCol = true;
@@ -35,7 +34,7 @@ public class EllerGen {
 		this.grid = grid;
 		
 		fromIndex = 0;
-		toIndex = cols;
+		toIndex = COLS;
 		
 		for (int i = 0; i < grid.size(); i++) {
 			grid.get(i).setId(i);
@@ -48,9 +47,8 @@ public class EllerGen {
 			public void actionPerformed(ActionEvent e) {
 				if (genNextCol) {
 					currentCol = grid.subList(fromIndex, toIndex);
-					colCounter++;
 					fromIndex = toIndex;
-					toIndex += cols;
+					toIndex += COLS;
 					new ColumnGen(currentCol, panel);
 				} else if (grid.parallelStream().allMatch(c -> c.isVisited())) {
 					Maze.generated = true;
@@ -63,10 +61,10 @@ public class EllerGen {
 	
 	private class ColumnGen {
 		
-		private Queue<Cell> carveDownQueue = new LinkedList<Cell>();
-		private Queue<Cell> carveRightQueue = new LinkedList<Cell>();
-		private List<Cell> col = new ArrayList<Cell>();
-		private Random r = new Random();
+		private final Queue<Cell> carveDownQueue = new LinkedList<Cell>();
+		private final Queue<Cell> carveRightQueue = new LinkedList<Cell>();
+		private final List<Cell> col;
+		private final Random r = new Random();
 		private Cell current;
 		
 		private ColumnGen(List<Cell> col, MazeGridPanel panel) {
@@ -90,6 +88,7 @@ public class EllerGen {
 					}
 					panel.setCurrent(current);
 					panel.repaint();
+					timer.setDelay(Maze.speed);
 				}
 			});
 			timer.start();
@@ -99,7 +98,7 @@ public class EllerGen {
 			current = carveDownQueue.poll();
 			current.setVisited(true);
 			
-			if (r.nextBoolean() || colCounter == cols) { // or last column
+			if (r.nextBoolean() || col.contains(grid.get(grid.size() - 1))) { // or last column
 				Cell bottom = current.getBottomNeighbour(grid);
 				if (bottom != null) {
 					if (disjointSet.find_set(current.getId()) != disjointSet.find_set(bottom.getId())) {
