@@ -204,7 +204,7 @@ public class Cell {
 		return neighbours;
 	}
 	
-	
+	// no walls between
 	public List<Cell> getValidMoveNeighbours(List<Cell> grid) {
 		List<Cell> neighbours = new ArrayList<Cell>(4);
 		

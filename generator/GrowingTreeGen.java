@@ -64,6 +64,8 @@ public class GrowingTreeGen {
 		// among the most recent cells, the Maze will have a low "river" factor but
 		// a long windy solution.
 
+	
+	// low river factor by attempting to pick oldest cell if possible. else get random.
 	private void carve() {
 		current.setVisited(true);
 		Cell next = current.getUnvisitedNeighbour(grid);
