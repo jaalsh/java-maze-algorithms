@@ -33,6 +33,7 @@ public class BiDFSSolve {
 				} else {
 					current1 = null;
 					current2 = null;
+					Maze.solved = true;
 					drawPath();
 					timer.stop();
 				}

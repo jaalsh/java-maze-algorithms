@@ -32,6 +32,7 @@ public class DijkstraSolve {
 					flood();
 				} else {
 					drawPath();
+					Maze.solved = true;
 					timer.stop();
 				}
 				panel.setCurrent(current);

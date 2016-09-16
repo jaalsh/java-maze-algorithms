@@ -30,6 +30,7 @@ public class DFSSolve {
 					path();
 				} else {
 					drawPath();
+					Maze.solved = true;
 					timer.stop();
 				}
 				panel.setCurrent(current);

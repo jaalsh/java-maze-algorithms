@@ -47,6 +47,7 @@ public class BFSSolve {
 					flood();
 				} else {
 					drawPath();
+					Maze.solved = true;
 					timer.stop();
 				}
 				panel.setCurrent(current);

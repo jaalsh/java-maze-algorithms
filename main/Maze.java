@@ -28,7 +28,7 @@ public class Maze {
 	public static final int W = 20;
 	
 	public static int speed = 1;
-	public static boolean generated;
+	public static boolean generated, solved;
 	
 	private static final String[] GENERATION_METHODS = {"0. DFS", "1. Hunt & Kill", "2. Wilson's",
 			"3. Growing Tree", "4. Quad-directional DFS", "5. Binary Tree", "6. Kruskal", "7. Eller",
@@ -182,6 +182,7 @@ public class Maze {
 		runButton.addActionListener(event -> {
 			 speed = initialSpeedSlider.getValue();
 			 generated = false;
+			 solved = false;
 			 grid.generate(genMethodsComboBox.getSelectedIndex());
 			 genSpeedSlider.setValue(speed);
 		     cardLayout.next(cards);
@@ -198,8 +199,12 @@ public class Maze {
 		});
 		
 		solveAgainButton.addActionListener(event -> {
-			grid.resetSolution();
-			cardLayout.show(cards, "solve");
+			if (solved) {				
+				grid.resetSolution();
+				cardLayout.show(cards, "solve");
+			} else {
+				JOptionPane.showMessageDialog(frame, "Please wait until the maze has been solved.");
+			}
 		});
 		
 		resetButton.addActionListener(event -> createAndShowGUI());
