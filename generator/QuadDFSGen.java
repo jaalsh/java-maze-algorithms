@@ -13,7 +13,7 @@ import javax.swing.Timer;
 import main.*;
 import util.Cell;
 
-// does not generate a perfect maze - this is mostly for fun.
+// need to test if creates perfect maze. initial tests seem positive. WIP.
 /*
  * Perfect: A "perfect" Maze means one without any loops or closed circuits, and without any inaccessible areas. 
  * Also called a simply-connected Maze. From each point, there is exactly one path to any other point. 
@@ -51,12 +51,7 @@ public class QuadDFSGen {
 					carveCurrent3();
 					carveCurrent4();
 				} else {
-					carvePathBetweenStacks(grid1, grid2);
-					carvePathBetweenStacks(grid1, grid3);
-					carvePathBetweenStacks(grid1, grid4);
-					carvePathBetweenStacks(grid2, grid3);
-					carvePathBetweenStacks(grid2, grid4);
-					carvePathBetweenStacks(grid3, grid4);
+					createPath();
 					current1 = null;
 					current2 = null;
 					current3 = null;
@@ -140,13 +135,47 @@ public class QuadDFSGen {
 		}
 	}
 	
-	private void carvePathBetweenStacks(List<Cell> gridA, List<Cell> gridB) {
+	private boolean carvePathBetweenGrids(List<Cell> gridA, List<Cell> gridB) {
 		for (Cell c : gridA) {
 			for (Cell n : c.getAllNeighbours(grid)) {
 				if (gridB.contains(n)) {
 					c.removeWalls(n);
-					return;
+					return true;
 				}
+			}
+		}
+		return false;
+	}
+
+	// one and two MUST be connected!!
+	
+	private void createPath() {
+		boolean oneTwo = false;
+		boolean oneThree = false;
+		boolean oneFour = false;
+		
+		oneTwo = carvePathBetweenGrids(grid1, grid2);
+		oneThree = carvePathBetweenGrids(grid1, grid3);
+		oneFour = carvePathBetweenGrids(grid1, grid4);
+		
+		System.out.println();
+		System.out.println(oneTwo);
+		System.out.println(oneThree);
+		System.out.println(oneFour);
+		
+		if (!oneTwo) {
+			if (oneThree) {
+				carvePathBetweenGrids(grid2, grid3);
+			} else if (oneFour) {
+				carvePathBetweenGrids(grid2, grid4);
+			}
+		} else {
+			if (!oneThree) {
+				carvePathBetweenGrids(grid2, grid3);
+			}
+			
+			if (!oneFour) {
+				carvePathBetweenGrids(grid2, grid4);
 			}
 		}
 	}
