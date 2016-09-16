@@ -29,13 +29,11 @@ public class MazeGridPanel extends JPanel {
 
 	@Override
 	public Dimension getPreferredSize() {
-		// +1 pixel on width and height so bottom and right borders can be
-		// drawn.
+		// +1 pixel on width and height so bottom and right borders can be drawn.
 		return new Dimension(Maze.WIDTH + 1, Maze.HEIGHT + 1);
 	}
 
 	public void generate(int index) {
-		
 		// switch statement for gen method read from combobox in Maze.java
 		switch (index) {
 		case 0:
@@ -64,6 +62,9 @@ public class MazeGridPanel extends JPanel {
 			break;
 		case 8:
 			new AldousBroderGen(grid, this);
+			break;
+		case 9:
+			new GrowingForestGen(grid, this);
 			break;
 		default:
 			new GrowingTreeGen(grid, this);
