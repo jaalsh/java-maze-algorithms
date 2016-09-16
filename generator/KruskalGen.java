@@ -14,6 +14,9 @@ import main.MazeGridPanel;
 import util.Cell;
 import util.DisjointSets;
 
+
+// slightly different as that it loops through cells randomly and then each wall of the cell. not through each wall randomly.
+
 public class KruskalGen {
 
 	private Stack<Cell> stack = new Stack<Cell>();
