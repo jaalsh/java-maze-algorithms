@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.swing.Timer;
 
@@ -68,6 +70,13 @@ public class GrowingForestGen {
 		}
 		
 		if (done) active.remove(current);
+		
+		List<Cell> unvisited = grid.parallelStream().filter(c -> !c.isVisited()).collect(Collectors.toList());
+		
+		// 2% chance to generate a new tree
+		if (!unvisited.isEmpty() && r.nextInt(101) > 98) {
+			active.add(unvisited.get(r.nextInt(unvisited.size())));
+		}
 		
 		if (!active.isEmpty()) current = active.get(r.nextInt(active.size()));
 	}	
