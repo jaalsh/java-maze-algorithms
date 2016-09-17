@@ -296,6 +296,10 @@ public class Cell {
 		return checkNeighbourInGridBounds(grid, new Cell(x, y + 1));
 	}
 	
+	public Cell getLeftNeighbour(List<Cell> grid) {
+		return checkNeighbourInGridBounds(grid, new Cell(x - 1, y));
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

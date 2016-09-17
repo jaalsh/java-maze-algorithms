@@ -12,7 +12,6 @@ import generator.*;
 import solver.*;
 import util.Cell;
 
-
 public class MazeGridPanel extends JPanel {
 
 	private static final long serialVersionUID = 7237062514425122227L;
@@ -65,6 +64,9 @@ public class MazeGridPanel extends JPanel {
 			break;
 		case 9:
 			new GrowingForestGen(grid, this);
+			break;
+		case 10:
+			new SidewinderGen(grid, this);
 			break;
 		default:
 			new GrowingTreeGen(grid, this);
