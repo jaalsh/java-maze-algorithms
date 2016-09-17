@@ -158,11 +158,6 @@ public class QuadDFSGen {
 		oneThree = carvePathBetweenGrids(grid1, grid3);
 		oneFour = carvePathBetweenGrids(grid1, grid4);
 		
-		System.out.println();
-		System.out.println(oneTwo);
-		System.out.println(oneThree);
-		System.out.println(oneFour);
-		
 		if (!oneTwo) {
 			if (oneThree) {
 				carvePathBetweenGrids(grid2, grid3);
