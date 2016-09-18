@@ -68,6 +68,9 @@ public class MazeGridPanel extends JPanel {
 		case 10:
 			new SidewinderGen(grid, this);
 			break;
+		case 11:
+			new PrimsGen(grid, this);
+			break;
 		default:
 			new GrowingTreeGen(grid, this);
 			break;
