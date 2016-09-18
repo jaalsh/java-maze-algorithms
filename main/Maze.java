@@ -32,7 +32,7 @@ public class Maze {
 	
 	private static final String[] GENERATION_METHODS = {"0. DFS", "1. Hunt & Kill", "2. Wilson's",
 			"3. Growing Tree", "4. Quad-directional DFS", "5. Binary Tree", "6. Kruskal's", "7. Eller",
-			"8. Aldous-Broder", "9. Growing Forest", "10. Sidewinder", "11. Prim's"};
+			"8. Aldous-Broder", "9. Growing Forest", "10. Sidewinder", "11. Prim's", "12. Houston"};
 	private static final String[] SOLVING_METHODS = {"0. DFS", "1. BFS", "2. Bi-directional DFS", "3. Dijkstra"};
 
 	private int cols, rows;

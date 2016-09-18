@@ -71,6 +71,9 @@ public class MazeGridPanel extends JPanel {
 		case 11:
 			new PrimsGen(grid, this);
 			break;
+		case 12:
+			new HoustonGen(grid, this);
+			break;
 		default:
 			new GrowingTreeGen(grid, this);
 			break;
@@ -115,9 +118,6 @@ public class MazeGridPanel extends JPanel {
 		}
 	}
 	
-	/**
-	 * @param currentCells the currentCells to set
-	 */
 	public void setCurrentCells(List<Cell> currentCells) {
 		this.currentCells = currentCells;
 	}
