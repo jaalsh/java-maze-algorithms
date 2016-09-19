@@ -3,7 +3,6 @@ package generator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
@@ -23,43 +22,38 @@ import util.Cell;
 
 public class QuadDFSGen {
 
-	private Stack<Cell> stack1 = new Stack<Cell>();
-	private Stack<Cell> stack2 = new Stack<Cell>();
-	private Stack<Cell> stack3 = new Stack<Cell>();
-	private Stack<Cell> stack4 = new Stack<Cell>();
 	private List<Cell> grid = new ArrayList<Cell>();
-	private List<Cell> grid1 = new ArrayList<Cell>();
-	private List<Cell> grid2 = new ArrayList<Cell>();
-	private List<Cell> grid3 = new ArrayList<Cell>();
-	private List<Cell> grid4 = new ArrayList<Cell>();
-	private Cell current1, current2, current3, current4;
+
+	private List<Cell> currentCells = new ArrayList<Cell>(4);
+	private List<Stack<Cell>> stacks = new ArrayList<Stack<Cell>>(4);
+	private List<List<Cell>> grids = new ArrayList<List<Cell>>(4);
 	private Random r = new Random();
 
 	public QuadDFSGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
-		current1 = grid.get(0);
-		current2 = grid.get(grid.size() - 1);
-		current3 = grid.get(r.nextInt(grid.size()));
-		current4 = grid.get(r.nextInt(grid.size()));
+		currentCells.add(grid.get(0));
+		currentCells.add(grid.get(grid.size() - 1));
+		currentCells.add(grid.get(r.nextInt(grid.size())));
+		currentCells.add(grid.get(r.nextInt(grid.size())));
+		
+		for (int i = 0; i < 4; i++) {
+			stacks.add(new Stack<Cell>());
+			grids.add(new ArrayList<Cell>());
+		}
+		
 		final Timer timer = new Timer(Maze.speed, null);
 		timer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!grid.parallelStream().allMatch(c -> c.isVisited())) {
-					carveCurrent1();
-					carveCurrent2();
-					carveCurrent3();
-					carveCurrent4();
+					carve();
 				} else {
 					createPath();
-					current1 = null;
-					current2 = null;
-					current3 = null;
-					current4 = null;
+					currentCells.clear();
 					Maze.generated = true;
 					timer.stop();
 				}
-				panel.setCurrentCells(Arrays.asList(current1, current2, current3, current4));
+				panel.setCurrentCells(currentCells);
 				panel.repaint();
 				timer.setDelay(Maze.speed);
 			}
@@ -67,70 +61,29 @@ public class QuadDFSGen {
 		timer.start();
 	}
 
-	private void carveCurrent1() {
-		current1.setVisited(true);
-		Cell next = current1.getUnvisitedNeighbour(grid);
-		if (next != null) {
-			stack1.push(current1);
-			grid1.add(current1);
-			current1.removeWalls(next);
-			current1 = next;
-		} else if (!stack1.isEmpty()) {
-			try {
-				current1 = stack1.pop();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	private void carveCurrent2() {
-		current2.setVisited(true);
-		Cell next = current2.getUnvisitedNeighbour(grid);
-		if (next != null) {
-			stack2.push(current2);
-			grid2.add(current2);
-			current2.removeWalls(next);
-			current2 = next;
-		} else if (!stack2.isEmpty()) {
-			try {
-				current2 = stack2.pop();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	private void carveCurrent3() {
-		current3.setVisited(true);
-		Cell next = current3.getUnvisitedNeighbour(grid);
-		if (next != null) {
-			stack3.push(current3);
-			grid3.add(current3);
-			current3.removeWalls(next);
-			current3 = next;
-		} else if (!stack3.isEmpty()) {
-			try {
-				current3 = stack3.pop();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
-	private void carveCurrent4() {
-		current4.setVisited(true);
-		Cell next = current4.getUnvisitedNeighbour(grid);
-		if (next != null) {
-			stack4.push(current4);
-			grid4.add(current4);
-			current4.removeWalls(next);
-			current4 = next;
-		} else if (!stack4.isEmpty()) {
-			try {
-				current4 = stack4.pop();
-			} catch (Exception e) {
-				e.printStackTrace();
+	private void carve() {
+		for(int i = 0; i < currentCells.size(); i++) {
+			Cell current = currentCells.get(i);
+			if (current != null) {
+				Stack<Cell> myStack = stacks.get(i);
+				List<Cell> myGrid = grids.get(i);
+				current.setVisited(true);
+				Cell next = current.getUnvisitedNeighbour(grid);
+				if (next != null) {
+					myStack.push(current);
+					myGrid.add(current);
+					current.removeWalls(next);
+					current = next;
+				} else if (!myStack.isEmpty()) {
+					try {
+						current = myStack.pop();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					current = null;
+				}
+				currentCells.set(i, current);
 			}
 		}
 	}
@@ -148,11 +101,15 @@ public class QuadDFSGen {
 	}
 
 	// one and two MUST be connected!!
-	
 	private void createPath() {
 		boolean oneTwo = false;
 		boolean oneThree = false;
 		boolean oneFour = false;
+		
+		List<Cell> grid1 = grids.get(0);
+		List<Cell> grid2 = grids.get(1);
+		List<Cell> grid3 = grids.get(2);
+		List<Cell> grid4 = grids.get(3);
 		
 		oneTwo = carvePathBetweenGrids(grid1, grid2);
 		oneThree = carvePathBetweenGrids(grid1, grid3);
@@ -167,9 +124,7 @@ public class QuadDFSGen {
 		} else {
 			if (!oneThree) {
 				carvePathBetweenGrids(grid2, grid3);
-			}
-			
-			if (!oneFour) {
+			} else if (!oneFour) {
 				carvePathBetweenGrids(grid2, grid4);
 			}
 		}
