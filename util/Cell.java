@@ -288,6 +288,10 @@ public class Cell {
 		return neighbours;
 	}
 	
+	public Cell getTopNeighbour(List<Cell> grid) {
+		return checkNeighbourInGridBounds(grid, new Cell(x, y - 1));
+	}
+	
 	public Cell getRightNeighbour(List<Cell> grid) {
 		return checkNeighbourInGridBounds(grid, new Cell(x + 1, y));
 	}
