@@ -2,7 +2,6 @@ package generator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -13,8 +12,8 @@ import util.Cell;
 
 public class DFSGen {
 
-	private Stack<Cell> stack = new Stack<Cell>();
-	private List<Cell> grid = new ArrayList<Cell>();
+	private final Stack<Cell> stack = new Stack<Cell>();
+	private final List<Cell> grid;
 	private Cell current;
 
 	public DFSGen(List<Cell> grid, MazeGridPanel panel) {

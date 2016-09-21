@@ -18,7 +18,7 @@ import util.DisjointSets;
 
 // Slightly modified version in that the algorithm implemented here focuses on columns rather than rows.
 
-public class EllerGen {
+public class EllersGen {
 	
 	private final List<Cell> grid;
 	private List<Cell> currentCol;
@@ -30,7 +30,7 @@ public class EllerGen {
 	
 	private boolean genNextCol = true;
 
-	public EllerGen(List<Cell> grid, MazeGridPanel panel) {
+	public EllersGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
 		
 		fromIndex = 0;
