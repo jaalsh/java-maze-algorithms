@@ -40,6 +40,9 @@ due to the animation involved.
 ### Eller's
   * Eller's algorithm is typically implemented to generate one **row** at a time, however I've implemented it to focus on **columns**. The principles are the still the same.
   If you choose to focus on columns you can generate a maze with a more horizontal bias by choosing to carve down less frequently, likewise if you focus on rows you can       choose to carve right less frequently to generate a vertical biased maze. More help: [neocomputer.org Eller's Algorithm](http://www.neocomputer.org/projects/eller.html)
+
+### Sidewinder
+  * Like in Eller's algorithm my implementation focuses on **columns** rather than traditional implementations that focus on **rows**. 
   
 ### Houston's
 
