@@ -10,12 +10,12 @@ import javax.swing.Timer;
 import main.*;
 import util.Cell;
 
-public class HKGen {
+public class HuntAndKillGen {
 	
-	private List<Cell> grid;
+	private final List<Cell> grid;
 	private Cell current;
 
-	public HKGen(List<Cell> grid, MazeGridPanel panel) {
+	public HuntAndKillGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
 		current = grid.get(0);
 		final Timer timer = new Timer(Maze.speed, null);

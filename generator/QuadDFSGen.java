@@ -12,22 +12,14 @@ import javax.swing.Timer;
 import main.*;
 import util.Cell;
 
-// need to test if creates perfect maze. initial tests seem positive. WIP.
-/*
- * Perfect: A "perfect" Maze means one without any loops or closed circuits, and without any inaccessible areas. 
- * Also called a simply-connected Maze. From each point, there is exactly one path to any other point. 
- * The Maze has exactly one solution. 
- * In Computer Science terms, such a Maze can be described as a spanning tree over the set of cells or vertices
- */
-
 public class QuadDFSGen {
 
-	private List<Cell> grid = new ArrayList<Cell>();
+	private final List<Cell> grid;
 
-	private List<Cell> currentCells = new ArrayList<Cell>(4);
-	private List<Stack<Cell>> stacks = new ArrayList<Stack<Cell>>(4);
-	private List<List<Cell>> grids = new ArrayList<List<Cell>>(4);
-	private Random r = new Random();
+	private final List<Cell> currentCells = new ArrayList<Cell>(4);
+	private final List<Stack<Cell>> stacks = new ArrayList<Stack<Cell>>(4);
+	private final List<List<Cell>> grids = new ArrayList<List<Cell>>(4);
+	private final Random r = new Random();
 
 	public QuadDFSGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
@@ -100,7 +92,7 @@ public class QuadDFSGen {
 		return false;
 	}
 
-	// one and two MUST be connected!!
+	// one and two MUST be connected, otherwise no path from start to end.
 	private void createPath() {
 		boolean oneTwo = false;
 		boolean oneThree = false;

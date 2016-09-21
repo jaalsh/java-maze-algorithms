@@ -9,20 +9,21 @@ import java.util.stream.Collectors;
 
 import javax.swing.Timer;
 
-import main.Maze;
-import main.MazeGridPanel;
+import main.*;
 import util.Cell;
 
-public class HoustonGen {
+public class WilsonsGen {
 
-	private final Stack<Cell> stack = new Stack<Cell>();
 	private final List<Cell> grid;
+	private final Stack<Cell> stack = new Stack<Cell>();
 	private Cell current;
 	private final Random r = new Random();
 
-	public HoustonGen(List<Cell> grid, MazeGridPanel panel) {
+	public WilsonsGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
-		current = grid.get(0);
+		current = grid.get(r.nextInt(grid.size()));
+		current.setVisited(true);
+		current = grid.get(r.nextInt(grid.size()));
 		final Timer timer = new Timer(Maze.speed, null);
 		timer.addActionListener(new ActionListener() {
 			@Override
@@ -43,25 +44,6 @@ public class HoustonGen {
 	}
 	
 	private void carve() {
-		List<Cell> visited = grid.parallelStream().filter(c -> c.isVisited()).collect(Collectors.toList());
-		if (visited.size() <= grid.size() / 3) {
-			aldousBroder();
-		} else {
-			wilson();
-		}
-	}
-	
-	private void aldousBroder() {
-		current.setVisited(true);
-		List<Cell> neighs = current.getAllNeighbours(grid);
-		Cell next = neighs.get(r.nextInt(neighs.size()));
-		if (!next.isVisited()) {
-			current.removeWalls(next);
-		}
-		current = next;
-	}
-	
-	private void wilson() {
 		if (current.isVisited()) {
 			addPathToMaze();
 			List<Cell> notInMaze = grid.parallelStream().filter(c -> !c.isVisited()).collect(Collectors.toList());

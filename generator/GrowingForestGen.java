@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -17,12 +16,12 @@ import util.DisjointSets;
 
 public class GrowingForestGen {
 	
-	private List<Cell> grid;
-	private List<Cell> active = new ArrayList<Cell>();
-	private DisjointSets disjointSet = new DisjointSets();
+	private final List<Cell> grid;
+	private final List<Cell> active = new ArrayList<Cell>();
+	private final DisjointSets disjointSet = new DisjointSets();
 	
 	private Cell current;
-	private Random r = new Random();
+	private final Random r = new Random();
 
 	public GrowingForestGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;

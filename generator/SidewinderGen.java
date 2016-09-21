@@ -14,11 +14,11 @@ import util.Cell;
 
 public class SidewinderGen {
 
-	private List<Cell> grid;
-	private List<Cell> run = new ArrayList<Cell>();
+	private final List<Cell> grid;
+	private final List<Cell> run = new ArrayList<Cell>();
 	private Cell current;
 	private int index;
-	private Random r = new Random();
+	private final Random r = new Random();
 
 	public SidewinderGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;

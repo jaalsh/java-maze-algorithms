@@ -2,7 +2,6 @@ package generator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
@@ -15,13 +14,13 @@ import util.Cell;
 import util.DisjointSets;
 
 
-// slightly different as that it loops through cells randomly and then each wall of the cell. not through each wall randomly.
+// Slightly different as it loops through cells randomly and then each wall of the cell. Not through each wall randomly.
 
 public class KruskalGen {
 
-	private Stack<Cell> stack = new Stack<Cell>();
-	private DisjointSets disjointSet = new DisjointSets();
-	private List<Cell> grid = new ArrayList<Cell>();
+	private final Stack<Cell> stack = new Stack<Cell>();
+	private final DisjointSets disjointSet = new DisjointSets();
+	private final List<Cell> grid;
 	private Cell current;
 
 	public KruskalGen(List<Cell> grid, MazeGridPanel panel) {

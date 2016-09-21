@@ -2,7 +2,6 @@ package generator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -14,7 +13,7 @@ import util.Cell;
 
 public class AldousBroderGen {
 	
-	private List<Cell> grid = new ArrayList<Cell>();
+	private final List<Cell> grid;
 	private Cell current;
 	private Random r = new Random();
 
