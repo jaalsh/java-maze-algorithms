@@ -45,7 +45,6 @@ public class SidewinderGen {
 	
 	private void carve() {
 		current.setVisited(true);
-		run.add(current);
 		
 		Cell bottom = current.getBottomNeighbour(grid);
 		Cell left = current.getLeftNeighbour(grid);
@@ -55,6 +54,7 @@ public class SidewinderGen {
 				current.removeWalls(bottom);
 			}
 		} else {
+			run.add(current);
 			if (bottom != null && r.nextBoolean()) {
 				current.removeWalls(bottom);
 			} else {
@@ -70,6 +70,5 @@ public class SidewinderGen {
 		if (grid.size() - 1 >= index + 1) {
 			current = grid.get(++index);
 		}
-		
 	}
 }
