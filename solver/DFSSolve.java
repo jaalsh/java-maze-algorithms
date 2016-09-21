@@ -10,14 +10,14 @@ import javax.swing.Timer;
 import main.*;
 import util.Cell;
 
-
-// basically a greedy dijkstra that goes a path until it hits a dead end instead of prioritising the 
+// Basically a greedy dijkstra's that follows a path until it hits a dead end instead of prioritising the 
 // closest cell to the goal.
+
 public class DFSSolve {
 
-	private Stack<Cell> path = new Stack<Cell>();
+	private final Stack<Cell> path = new Stack<Cell>();
 	private Cell current;
-	private List<Cell> grid;
+	private final List<Cell> grid;
 
 	public DFSSolve(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;

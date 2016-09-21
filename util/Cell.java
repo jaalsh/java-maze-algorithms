@@ -42,6 +42,14 @@ public class Cell {
 		return y;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public boolean isVisited() {
 		return visited;
 	}
@@ -327,19 +335,5 @@ public class Cell {
 		if (y != other.y)
 			return false;
 		return true;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 }

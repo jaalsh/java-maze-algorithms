@@ -14,16 +14,16 @@ import util.Cell;
 
 public class DijkstraSolve {
 	
-	private Queue<Cell> gridQueue;
+	private final Queue<Cell> queue;
 	private Cell current;
-	private List<Cell> grid;
+	private final List<Cell> grid;
 
 	public DijkstraSolve(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
-		gridQueue = new PriorityQueue<Cell>(new CellDistanceFromGoalComparator());
+		queue = new PriorityQueue<Cell>(new CellDistanceFromGoalComparator());
 		current = grid.get(0);
 		current.setDistance(0);
-		gridQueue.offer(current);
+		queue.offer(current);
 		final Timer timer = new Timer(Maze.speed, null);
 		timer.addActionListener(new ActionListener() {
 			@Override
@@ -45,13 +45,13 @@ public class DijkstraSolve {
 	
 	private void flood() {
 		current.setDeadEnd(true);
-		current = gridQueue.poll();
+		current = queue.poll();
 		List<Cell> adjacentCells = current.getValidMoveNeighbours(grid);
 		for (Cell c : adjacentCells) {
 			if (c.getDistance() == -1) {
 				c.setDistance(current.getDistance() + 1);
 				c.setParent(current);
-				gridQueue.offer(c);
+				queue.offer(c);
 			}
 		}
 	}
@@ -64,12 +64,10 @@ public class DijkstraSolve {
 	}
 	
 	private class CellDistanceFromGoalComparator implements Comparator<Cell> {
-		
 		Cell goal = grid.get(grid.size() - 1);
 		
 		@Override
 		public int compare(Cell arg0, Cell arg1) {
-			
 			if (getDistanceFromGoal(arg0) > getDistanceFromGoal(arg1)) {
 				return 1;
 			} else {
@@ -82,5 +80,3 @@ public class DijkstraSolve {
 		}
 	}
 }
-
-

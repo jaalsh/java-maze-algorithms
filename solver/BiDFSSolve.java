@@ -13,10 +13,10 @@ import util.Cell;
 
 public class BiDFSSolve {
 
-	private Stack<Cell> path1 = new Stack<Cell>();
-	private Stack<Cell> path2 = new Stack<Cell>();
+	private final Stack<Cell> path1 = new Stack<Cell>();
+	private final Stack<Cell> path2 = new Stack<Cell>();
 	private Cell current1, current2;
-	private List<Cell> grid;
+	private final List<Cell> grid;
 
 	public BiDFSSolve(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
@@ -27,7 +27,6 @@ public class BiDFSSolve {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!pathFound()) {	
-					// can't use one method as Java is pass by value... not reference.
 					pathFromEnd();
 					pathFromStart();
 				} else {
@@ -75,25 +74,24 @@ public class BiDFSSolve {
 		}
 	}
 	
-	// could make this into method call to avoid unnecessary creation of neighbour list...
 	private boolean pathFound() {
 		List<Cell> neighs1 = current1.getValidMoveNeighbours(grid);
 		List<Cell> neighs2 = current2.getValidMoveNeighbours(grid);
 		for (Cell c : neighs1) {
 			if (path2.contains(c)) {
+				// path from beginning.
 				path1.push(current1);
 				path1.push(c);
 				joinPaths(c, path2, current2);
-				//System.out.println("path from beginning!");
 				return true;
 			}
 		}
 		for (Cell c : neighs2) {
 			if (path1.contains(c)) {
+				// path from end.
 				path2.push(current2);
 				path2.push(c);
 				joinPaths(c, path1, current1);
-				//System.out.println("path from end!");
 				return true;
 			}
 		}

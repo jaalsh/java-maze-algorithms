@@ -47,7 +47,7 @@ public class Maze {
 
 	public Maze() {
 		cols = Math.floorDiv(WIDTH, W);
-		rows = Math.floorDiv(HEIGHT, W);
+		rows = cols;
 
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -64,7 +64,7 @@ public class Maze {
 	}
 
 	private void createAndShowGUI() {
-		JFrame frame = new JFrame("Maze");
+		JFrame frame = new JFrame("Java Mazes");
 
 		JPanel container = new JPanel();
 		container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
@@ -118,7 +118,7 @@ public class Maze {
         solveSpeedSlider.setInverted(true);
         solveSpeedSlider.setPaintLabels(true);
         
-		// Create the panel that contains the "cards". and the cards
+		// Create the card panels.
 		
 		JPanel card1 = new JPanel();
 		JPanel card2 = new JPanel();
