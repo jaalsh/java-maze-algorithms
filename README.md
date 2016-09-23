@@ -18,6 +18,7 @@ due to the animation involved.
 * Quad Depth First Search
 * Sidewinder
 * Wilson's
+* Spiral Backtracker
 
 ## Solving Algorithms
 
@@ -62,7 +63,11 @@ due to the animation involved.
 	 
 ### QuadDFS
 
- * The Quad Depth First Search implementation may not produce perfect mazes. Based on early and incomplete testing it does. For my needs I didn't need to create a perfect maze so I haven't been to concerned with testing.
+ * The Quad Depth First Search implementation may not always produce perfect mazes.
  * Description of a perfect maze, again quoting Walter D. Pullen author of [astrolog.org](http://www.astrolog.org/): 
  
 > A "perfect" Maze means one without any loops or closed circuits, and without any inaccessible areas. Also called a simply-connected Maze. From each point, there is exactly one path to any other point. The Maze has exactly one solution. In Computer Science terms, such a Maze can be described as a spanning tree over the set of cells or vertices.
+
+### Spiral Backtracker
+
+  * This is an algorithm to generate mazes with spiral patterns. It is similar to the DFS algorithm and also uses a stack data structure to back track. However, instead of going in a direction randomly, you choose a direction to travel in and then travel in that direction for __x__ cells, repeating once you've hit a cell already in the maze or a border. The maze is done once all cells have been visited. See spiral screenshot for mazes that can be generated using the algorithm. The distance you choose to travel in is entirely up to you, you can even choose a random number to get varying distances. If you choose a distance of 1, you will have a DFS that can't travel in the previous direction just travelled.
