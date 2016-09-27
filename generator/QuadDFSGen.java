@@ -11,6 +11,7 @@ import javax.swing.Timer;
 
 import main.*;
 import util.Cell;
+import util.DisjointSets;
 
 public class QuadDFSGen {
 
@@ -79,46 +80,27 @@ public class QuadDFSGen {
 			}
 		}
 	}
-	
-	private boolean carvePathBetweenGrids(List<Cell> gridA, List<Cell> gridB) {
-		for (Cell c : gridA) {
-			for (Cell n : c.getAllNeighbours(grid)) {
-				if (gridB.contains(n)) {
-					c.removeWalls(n);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 
 	// one and two MUST be connected, otherwise no path from start to end.
 	private void createPath() {
-		boolean oneTwo = false;
-		boolean oneThree = false;
-		boolean oneFour = false;
+		DisjointSets disjointSet = new DisjointSets();
 		
-		List<Cell> grid1 = grids.get(0);
-		List<Cell> grid2 = grids.get(1);
-		List<Cell> grid3 = grids.get(2);
-		List<Cell> grid4 = grids.get(3);
-		
-		oneTwo = carvePathBetweenGrids(grid1, grid2);
-		oneThree = carvePathBetweenGrids(grid1, grid3);
-		oneFour = carvePathBetweenGrids(grid1, grid4);
-		
-		if (!oneTwo) {
-			if (oneThree) {
-				carvePathBetweenGrids(grid2, grid3);
-			} else if (oneFour) {
-				carvePathBetweenGrids(grid2, grid4);
-			}
-		} else {
-			if (!oneThree) {
-				carvePathBetweenGrids(grid2, grid3);
-			} else if (!oneFour) {
-				carvePathBetweenGrids(grid2, grid4);
-			}
+		for (int i = 0; i < grids.size(); i++) {
+			final int id = i;
+			grids.get(i).forEach(c -> c.setId(id));
+			disjointSet.create_set(i);
 		}
+		
+		for (Cell c : grid) {
+			if (disjointSet.getNumberofDisjointSets() == 1) break; // break out if all cells in one set.
+			List<Cell> neighs = c.getAllNeighbours(grid);
+			for (Cell n : neighs) {
+				if (disjointSet.find_set(c.getId()) != disjointSet.find_set(n.getId())) {
+					c.removeWalls(n);
+					disjointSet.union(c.getId(), n.getId());
+				}
+			}	
+		}
+		
 	}
 }
