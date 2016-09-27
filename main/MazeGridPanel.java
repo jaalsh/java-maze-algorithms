@@ -54,7 +54,7 @@ public class MazeGridPanel extends JPanel {
 			new BinaryTreeGen(grid, this);
 			break;
 		case 6:
-			new KruskalGen(grid, this);
+			new KruskalsGen(grid, this);
 			break;
 		case 7:
 			new EllersGen(grid, this);

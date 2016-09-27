@@ -16,14 +16,14 @@ import util.DisjointSets;
 
 // Slightly different as it loops through cells randomly and then each wall of the cell. Not through each wall randomly.
 
-public class KruskalGen {
+public class KruskalsGen {
 
 	private final Stack<Cell> stack = new Stack<Cell>();
 	private final DisjointSets disjointSet = new DisjointSets();
 	private final List<Cell> grid;
 	private Cell current;
 
-	public KruskalGen(List<Cell> grid, MazeGridPanel panel) {
+	public KruskalsGen(List<Cell> grid, MazeGridPanel panel) {
 		this.grid = grid;
 		current = grid.get(0);
 		
