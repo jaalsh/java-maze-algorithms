@@ -17,8 +17,8 @@ due to the animation involved.
 * Prim's
 * Quad Depth First Search
 * Sidewinder
-* Wilson's
 * Spiral Backtracker
+* Wilson's
 
 ## Solving Algorithms
 
@@ -32,6 +32,10 @@ due to the animation involved.
 * [astrolog.org Think Labyrinth: Maze Algorithms](http://www.astrolog.org/labyrnth/algrithm.htm)
 * [wikipedia.org Maze generation algorithm](https://en.wikipedia.org/wiki/Maze_generation_algorithm)
 * [jamisbuck.org Maze Algorithms](http://www.jamisbuck.org/mazes/)
+
+## Task List
+
+- [ ] Sort algorithms into alphabetical order in drop down menu.
 
 ## Notes
 
