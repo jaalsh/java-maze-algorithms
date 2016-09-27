@@ -36,6 +36,7 @@ due to the animation involved.
 ## Task List
 
 - [ ] Sort algorithms into alphabetical order in drop down menu.
+- [ ] Test that Quad Depth First Search produces a 'perfect' maze.
 
 ## Notes
 
