@@ -1,4 +1,4 @@
-# Java Mazes
+# Java Maze Algorithms
 
 The primary goal of this project is to animate maze generation and solving algorithms. Not every algorithm is included, and the implementations may not be the most efficient
 due to the animation involved. 
