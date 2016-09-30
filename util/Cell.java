@@ -58,6 +58,10 @@ public class Cell {
 		this.visited = visited;
 	}
 	
+	public boolean isDeadEnd() {
+		return deadEnd;
+	}
+	
 	public void setDeadEnd(boolean deadEnd) {
 		this.deadEnd = deadEnd;
 	}
