@@ -3,6 +3,8 @@
 The primary goal of this project is to animate maze generation and solving algorithms. Not every algorithm is included, and the implementations may not be the most efficient
 due to the animation involved. 
 
+Main method is located in main/Maze.java. Can be ran using an IDE or from the [command line.](http://www.skylit.com/javamethods/faqs/javaindos.html).
+
 ## Generation Algorithms 
 
 * Aldous-Broder
