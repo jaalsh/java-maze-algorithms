@@ -39,7 +39,8 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 
 - [ ] Sort algorithms into alphabetical order in drop down menu.
 - [ ] Test that Quad Depth First Search produces a 'perfect' maze.
-- [ ] Optimise Houston's algorithm so that we don't keep checking that 1/3 of the maze has been visited once we pass the 1/3 visited threshold.
+- [x] Optimise Houston's algorithm so that we don't keep checking that 1/3 of the maze has been visited once we pass the 1/3 visited threshold.
+- [ ] Implement the minor refinement written in comments for Wilson's algorithm. This refinement could also be applied to Houston's.
 
 ## Notes
 
