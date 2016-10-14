@@ -2,6 +2,7 @@ package generator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
@@ -17,6 +18,7 @@ public class HoustonGen {
 
 	private final Stack<Cell> stack = new Stack<Cell>();
 	private final List<Cell> grid;
+	private List<Cell> visited = new ArrayList<Cell>();
 	private Cell current;
 	private final Random r = new Random();
 
@@ -43,8 +45,8 @@ public class HoustonGen {
 	}
 	
 	private void carve() {
-		List<Cell> visited = grid.parallelStream().filter(c -> c.isVisited()).collect(Collectors.toList());
 		if (visited.size() <= grid.size() / 3) {
+			visited = grid.parallelStream().filter(c -> c.isVisited()).collect(Collectors.toList());
 			aldousBroder();
 		} else {
 			wilson();
