@@ -46,6 +46,12 @@ public class WilsonsGen {
 	private void carve() {
 		if (current.isVisited()) {
 			addPathToMaze();
+			// TODO: Minor future refinement:
+			/* Do not need to run through whole maze as could just create a separate list 
+			 * as could just maintain a list of all cells not in made from beginning and remove them 
+			 * from the list as we pop them off the stack in addPathToMaze(). Algorithm should still work as 
+			 * current will never be in maze.
+			 */
 			List<Cell> notInMaze = grid.parallelStream().filter(c -> !c.isVisited()).collect(Collectors.toList());
 			if (!notInMaze.isEmpty()) {
 				current = notInMaze.get(r.nextInt(notInMaze.size()));							
