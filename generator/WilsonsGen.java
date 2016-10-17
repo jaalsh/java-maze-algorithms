@@ -48,9 +48,9 @@ public class WilsonsGen {
 			addPathToMaze();
 			// TODO: Minor future refinement:
 			/* Do not need to run through whole maze with stream filter.
-			 * Could maintain a list of all cells not in made from beginning and remove them 
+			 * Could maintain a list of all cells not in the maze from beginning and remove them 
 			 * from the list as we pop them off the stack in addPathToMaze(). Algorithm should still work as 
-			 * current will never be in maze.
+			 * current will never be in maze. When this list is empty we have carved the maze.
 			 */
 			List<Cell> notInMaze = grid.parallelStream().filter(c -> !c.isVisited()).collect(Collectors.toList());
 			if (!notInMaze.isEmpty()) {
