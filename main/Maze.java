@@ -73,7 +73,7 @@ public class Maze {
 		
 		JPanel mazeBorder = new JPanel();
 		final int BORDER_SIZE = 20;
-		mazeBorder.setBounds(0, 0, WIDTH + BORDER_SIZE ,HEIGHT + BORDER_SIZE);
+		mazeBorder.setBounds(0, 0, WIDTH + BORDER_SIZE, HEIGHT + BORDER_SIZE);
 		mazeBorder.setBackground(Color.BLACK);
 		mazeBorder.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
 		
@@ -158,7 +158,7 @@ public class Maze {
 		c.gridy = 2;
 		card3.add(solveSpeedSlider, c);
 		
-		// Create the panel that contains the "cards".
+		// Create the panel that contains the cards.
 		JPanel cards = new JPanel(cardLayout);
 		cards.setBorder(new EmptyBorder(0, 20, 0, 0));
 		cards.setOpaque(false);
