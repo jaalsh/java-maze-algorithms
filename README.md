@@ -37,7 +37,7 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 
 ## Task List
 
-- [ ] Sort algorithms into alphabetical order in drop down menu.
+- [ ] Sort generation and solving algorithms into alphabetical order (A-Z) in drop down menus.
 - [ ] Test that Quad Depth First Search produces a 'perfect' maze.
 - [x] Optimise Houston's algorithm so that we don't keep checking that 1/3 of the maze has been visited once we pass the 1/3 visited threshold.
 - [ ] Implement the minor refinement written in comments for Wilson's algorithm. This refinement could also be applied to Houston's.
@@ -51,9 +51,9 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
   * Eller's algorithm is typically implemented to generate one **row** at a time, however I've implemented it to focus on **columns**. The principles are the still the same.
   If you choose to focus on columns you can generate a maze with a more horizontal bias by choosing to carve down less frequently, likewise if you focus on rows you can       choose to carve right less frequently to generate a vertical biased maze. More help: [neocomputer.org Eller's Algorithm](http://www.neocomputer.org/projects/eller.html)
   * Regarding the algorithms origin:
-  
-> I asked the maintainer of “Think Labyrinth” about the origin of Eller’s algorithm and here was his response:
-“Eller’s algorithm is named after computer programmer Marlin Eller, CEO of sunhawk.com. He invented this algorithm in 1982, which is the earliest use of it I know of. He never published it, but he did tell me about it, so I chose to name the algorithm after him.”
+
+> I asked the maintainer of ï¿½Think Labyrinthï¿½ about the origin of Ellerï¿½s algorithm and here was his response:
+ï¿½Ellerï¿½s algorithm is named after computer programmer Marlin Eller, CEO of sunhawk.com. He invented this algorithm in 1982, which is the earliest use of it I know of. He never published it, but he did tell me about it, so I chose to name the algorithm after him.ï¿½
 
 [Jeffrey Winter, 3 Jan 2011](http://weblog.jamisbuck.org/2010/12/29/maze-generation-eller-s-algorithm)
 
