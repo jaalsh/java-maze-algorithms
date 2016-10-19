@@ -52,8 +52,8 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
   If you choose to focus on columns you can generate a maze with a more horizontal bias by choosing to carve down less frequently, likewise if you focus on rows you can       choose to carve right less frequently to generate a vertical biased maze. More help: [neocomputer.org Eller's Algorithm](http://www.neocomputer.org/projects/eller.html)
   * Regarding the algorithms origin:
 
-> I asked the maintainer of �Think Labyrinth� about the origin of Eller�s algorithm and here was his response:
-�Eller�s algorithm is named after computer programmer Marlin Eller, CEO of sunhawk.com. He invented this algorithm in 1982, which is the earliest use of it I know of. He never published it, but he did tell me about it, so I chose to name the algorithm after him.�
+> I asked the maintainer of "Think Labyrinth" about the origin of Eller's algorithm and here was his response:
+"Eller's algorithm is named after computer programmer Marlin Eller, CEO of sunhawk.com. He invented this algorithm in 1982, which is the earliest use of it I know of. He never published it, but he did tell me about it, so I chose to name the algorithm after him."
 
 [Jeffrey Winter, 3 Jan 2011](http://weblog.jamisbuck.org/2010/12/29/maze-generation-eller-s-algorithm)
 
