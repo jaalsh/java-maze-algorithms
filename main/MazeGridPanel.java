@@ -36,46 +36,46 @@ public class MazeGridPanel extends JPanel {
 		// switch statement for gen method read from combobox in Maze.java
 		switch (index) {
 		case 0:
-			new DFSGen(grid, this);
-			break;
-		case 1:
-			new HuntAndKillGen(grid, this);
-			break;
-		case 2:
-			new WilsonsGen(grid, this);
-			break;
-		case 3:
-			new GrowingTreeGen(grid, this);
-			break;
-		case 4:
-			new QuadDFSGen(grid, this);
-			break;
-		case 5:
-			new BinaryTreeGen(grid, this);
-			break;
-		case 6:
-			new KruskalsGen(grid, this);
-			break;
-		case 7:
-			new EllersGen(grid, this);
-			break;
-		case 8:
 			new AldousBroderGen(grid, this);
 			break;
-		case 9:
+		case 1:
+			new BinaryTreeGen(grid, this);
+			break;
+		case 2:
+			new DFSGen(grid, this);
+			break;
+		case 3:
+			new EllersGen(grid, this);
+			break;
+		case 4:
 			new GrowingForestGen(grid, this);
 			break;
-		case 10:
-			new SidewinderGen(grid, this);
+		case 5:
+			new GrowingTreeGen(grid, this);
 			break;
-		case 11:
+		case 6:
+			new HoustonGen(grid, this);;
+			break;
+		case 7:
+			new HuntAndKillGen(grid, this);
+			break;
+		case 8:
+			new KruskalsGen(grid, this);;
+			break;
+		case 9:
 			new PrimsGen(grid, this);
 			break;
+		case 10:
+			new QuadDFSGen(grid, this);
+			break;
+		case 11:
+			new SidewinderGen(grid, this);
+			break;
 		case 12:
-			new HoustonGen(grid, this);
+			new SpiralBacktrackerGen(grid, this);
 			break;
 		case 13:
-			new SpiralBacktrackerGen(grid, this);
+			new WilsonsGen(grid, this);
 			break;
 		default:
 			new GrowingTreeGen(grid, this);
@@ -86,19 +86,19 @@ public class MazeGridPanel extends JPanel {
 	public void solve(int index) {
 		switch (index) {
 		case 0:
-			new DFSSolve(grid, this);
+			new BiDFSSolve(grid, this);
 			break;
 		case 1:
 			new BFSSolve(grid, this);
 			break;
 		case 2: 
-			new BiDFSSolve(grid, this);
+			new DFSSolve(grid, this);
 			break;
 		case 3:
 			new DijkstraSolve(grid, this);
 			break;
 		default:
-			new BFSSolve(grid, this);
+			new DijkstraSolve(grid, this);
 			break;
 		}
 	}
