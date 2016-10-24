@@ -5,6 +5,8 @@ due to the animation involved.
 
 Main method is located in main/Maze.java and can be ran using an IDE or from the [command line.](http://www.skylit.com/javamethods/faqs/javaindos.html)
 
+*If running on a small resolution you may need to comment out or remove lines 95 and 96 in main/Maze.java which set the row count for the drop down menus.*
+
 ## Generation Algorithms
 
 * Aldous-Broder
