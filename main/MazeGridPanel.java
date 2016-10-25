@@ -77,6 +77,9 @@ public class MazeGridPanel extends JPanel {
 		case 13:
 			new WilsonsGen(grid, this);
 			break;
+		case 14:
+			new ZigZagGen(grid, this);
+			break;
 		default:
 			new GrowingTreeGen(grid, this);
 			break;
