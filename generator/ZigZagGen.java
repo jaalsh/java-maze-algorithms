@@ -18,7 +18,6 @@ import util.Cell;
 
 /**
  * TODO: 
- * - Modify priority queue to produce more diagonal / zig-zag paths.
  * - Analyse and increase efficiency.
  * @author jaalsh
  *
@@ -62,6 +61,7 @@ public class ZigZagGen {
 	
 	private void carve() {
 		Cell next = queue.poll();
+		Cell prev = current;
 		current.removeWalls(next);
 		if (next.isVisited()) {
 			goal = current;
@@ -81,9 +81,19 @@ public class ZigZagGen {
 			current.removeWalls(current.getAllNeighbours(grid).get(0));
 		}
 		
-		List<Cell> adjacentCells = current.getAllNeighbours(grid);
-		for (Cell c : adjacentCells) {
-				queue.offer(c);
+		// force zig zag pattern. 
+		if (prev == current.getBottomNeighbour(grid) || prev == current.getTopNeighbour(grid)) {
+			Cell left = current.getLeftNeighbour(grid);
+			Cell right = current.getRightNeighbour(grid);
+			
+			if (left != null) queue.offer(left);
+			if (right != null) queue.offer(right);
+		} else {
+			Cell top = current.getTopNeighbour(grid);
+			Cell bottom = current.getBottomNeighbour(grid);
+			
+			if (top != null) queue.offer(top);
+			if (bottom != null) queue.offer(bottom);
 		}
 	}
 
