@@ -46,6 +46,9 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 
 ## Notes
 
+### Aldous-Broder
+  * **Warning:** This algorithm is never guaranteed to finish generating a maze. It will most likely get stuck for a long time before it completes generation, if it does even terminate.
+
 ### Growing Tree
   * Could use stack to always get "newest" cell or queue to always get "oldest" cell
 
