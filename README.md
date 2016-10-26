@@ -23,6 +23,7 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 * Sidewinder
 * Spiral Backtracker
 * Wilson's
+* Zig-Zag
 
 ## Solving Algorithms
 
@@ -43,6 +44,8 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 - [ ] Test that Quad Depth First Search produces a 'perfect' maze.
 - [x] Optimise Houston's algorithm so that we don't keep checking that 1/3 of the maze has been visited once we pass the 1/3 visited threshold.
 - [ ] Implement the minor refinement written in comments for Wilson's algorithm. This refinement could also be applied to Houston's.
+- [ ] Update readme with a description of the Zig-Zag algorithm.
+- [ ] Update readme to highlight which algorithms are "standard" and which ones have been created for the project.
 
 ## Notes
 
