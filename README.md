@@ -46,6 +46,7 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 - [ ] Implement the minor refinement written in comments for Wilson's algorithm. This refinement could also be applied to Houston's.
 - [ ] Update readme with a description of the Zig-Zag algorithm.
 - [ ] Update readme to highlight which algorithms are "standard" and which ones have been created for the project.
+- [ ] Implement test methods. Such as a "flood fill" test to find any isolations within the maze.
 
 ## Notes
 
