@@ -42,6 +42,8 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 
 - [x] Sort generation and solving algorithms into alphabetical order (A-Z) in drop down menus.
 - [ ] Test that Quad Depth First Search produces a 'perfect' maze.
+- [ ] Test that Quad Depth First Search doesn't produce a maze with isolations.
+- *Both these tests will fail, need to fix.*
 - [x] Optimise Houston's algorithm so that we don't keep checking that 1/3 of the maze has been visited once we pass the 1/3 visited threshold.
 - [ ] Implement the minor refinement written in comments for Wilson's algorithm. This refinement could also be applied to Houston's.
 - [ ] Update readme with a description of the Zig-Zag algorithm.
