@@ -93,3 +93,6 @@ Main method is located in main/Maze.java and can be ran using an IDE or from the
 
 ### Spiral Backtracker
   * This is an algorithm to generate mazes with spiral patterns. It is similar to the DFS algorithm and also uses a stack data structure to back track. However, instead of going in a direction randomly, you choose a direction to travel in and then travel in that direction for __x__ cells, repeating once you've hit a cell already in the maze or a border. The maze is done once all cells have been visited. See spiral screenshot for mazes that can be generated using the algorithm. The distance you choose to travel in is entirely up to you, you can even choose a random number to get varying distances. If you choose a distance of 1, you will have a DFS that can't travel in the previous direction just travelled.
+
+### Zig Zag
+  * This is an algorithm to generate mazes with zig zag lines or patterns across the maze. 
